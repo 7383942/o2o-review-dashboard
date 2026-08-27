@@ -8,15 +8,6 @@ window.__DASHBOARD_DATA__ = {
           "updatedAt": "2026-08-27",
           "daily": [
             {
-              "date": "2026-08-02",
-              "reviews": 7200,
-              "reviewsText": "7200+",
-              "bad": 335,
-              "badText": "335",
-              "goodRate": 0.953,
-              "goodRateText": "95.3%"
-            },
-            {
               "date": "2026-08-13",
               "reviews": 7000,
               "reviewsText": "7000+",
@@ -54,6 +45,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-19",
+              "reviews": 7200,
+              "reviewsText": "7200+",
+              "bad": 335,
+              "badText": "335",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
+            },
+            {
+              "date": "2026-08-20",
               "reviews": 7200,
               "reviewsText": "7200+",
               "bad": 335,
@@ -856,39 +856,23 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "好吃",
-              "count": 26
+              "word": "难吃",
+              "count": 74
             },
             {
-              "word": "吃了",
-              "count": 23
+              "word": "口感",
+              "count": 33
             },
             {
-              "word": "一点",
+              "word": "不好吃",
+              "count": 22
+            },
+            {
+              "word": "味道",
               "count": 19
             },
             {
-              "word": "超级",
-              "count": 12
-            },
-            {
-              "word": "希腊",
-              "count": 12
-            },
-            {
-              "word": "一样",
-              "count": 11
-            },
-            {
-              "word": "不好",
-              "count": 11
-            },
-            {
-              "word": "这么",
-              "count": 10
-            },
-            {
-              "word": "好难",
+              "word": "好难吃",
               "count": 9
             },
             {
@@ -896,12 +880,28 @@ window.__DASHBOARD_DATA__ = {
               "count": 9
             },
             {
-              "word": "香味",
+              "word": "难喝",
               "count": 9
             },
             {
               "word": "口味",
               "count": 9
+            },
+            {
+              "word": "盖子",
+              "count": 7
+            },
+            {
+              "word": "过期",
+              "count": 5
+            },
+            {
+              "word": "太酸",
+              "count": 4
+            },
+            {
+              "word": "不好喝",
+              "count": 2
             }
           ]
         },
@@ -909,15 +909,6 @@ window.__DASHBOARD_DATA__ = {
           "skuName": "原味希腊90g3联",
           "updatedAt": "2026-08-27",
           "daily": [
-            {
-              "date": "2026-08-02",
-              "reviews": 110,
-              "reviewsText": "110+",
-              "bad": 6,
-              "badText": "6",
-              "goodRate": 0.955,
-              "goodRateText": "95.5%"
-            },
             {
               "date": "2026-08-13",
               "reviews": 50,
@@ -962,6 +953,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "3",
               "goodRate": 0.9690000000000001,
               "goodRateText": "96.9%"
+            },
+            {
+              "date": "2026-08-20",
+              "reviews": 110,
+              "reviewsText": "110+",
+              "bad": 6,
+              "badText": "6",
+              "goodRate": 0.955,
+              "goodRateText": "95.5%"
             },
             {
               "date": "2026-08-21",
@@ -1056,31 +1056,23 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "鸡胸肉",
+              "word": "临期",
+              "count": 3
+            },
+            {
+              "word": "发酸",
+              "count": 3
+            },
+            {
+              "word": "难吃",
+              "count": 3
+            },
+            {
+              "word": "口感",
               "count": 2
             },
             {
-              "word": "在一起",
-              "count": 2
-            },
-            {
-              "word": "钥匙",
-              "count": 2
-            },
-            {
-              "word": "一个",
-              "count": 2
-            },
-            {
-              "word": "袋子",
-              "count": 2
-            },
-            {
-              "word": "也不",
-              "count": 2
-            },
-            {
-              "word": "商品",
+              "word": "商品变形",
               "count": 1
             },
             {
@@ -1092,15 +1084,11 @@ window.__DASHBOARD_DATA__ = {
               "count": 1
             },
             {
-              "word": "而且",
+              "word": "撒漏",
               "count": 1
             },
             {
-              "word": "吃了",
-              "count": 1
-            },
-            {
-              "word": "我的",
+              "word": "味道",
               "count": 1
             }
           ]
@@ -1109,15 +1097,6 @@ window.__DASHBOARD_DATA__ = {
           "skuName": "0蔗糖希腊90g单杯",
           "updatedAt": "2026-08-27",
           "daily": [
-            {
-              "date": "2026-08-02",
-              "reviews": 2200,
-              "reviewsText": "2200+",
-              "bad": 105,
-              "badText": "105",
-              "goodRate": 0.953,
-              "goodRateText": "95.3%"
-            },
             {
               "date": "2026-08-13",
               "reviews": 2000,
@@ -1162,6 +1141,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "105",
               "goodRate": 0.9520000000000001,
               "goodRateText": "95.2%"
+            },
+            {
+              "date": "2026-08-20",
+              "reviews": 2200,
+              "reviewsText": "2200+",
+              "bad": 105,
+              "badText": "105",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-21",
@@ -2060,52 +2048,52 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "不是",
-              "count": 28
+              "word": "难吃",
+              "count": 57
             },
             {
-              "word": "好吃",
-              "count": 25
+              "word": "不好吃",
+              "count": 23
             },
             {
               "word": "盖子",
               "count": 22
             },
             {
-              "word": "一点",
+              "word": "口感",
               "count": 21
             },
             {
-              "word": "好难",
-              "count": 18
+              "word": "味道",
+              "count": 19
             },
             {
-              "word": "也不",
-              "count": 15
-            },
-            {
-              "word": "买一",
-              "count": 14
-            },
-            {
-              "word": "吃了",
-              "count": 13
-            },
-            {
-              "word": "超级",
+              "word": "好难吃",
               "count": 12
             },
             {
-              "word": "商品",
-              "count": 11
-            },
-            {
-              "word": "一个",
-              "count": 11
+              "word": "难喝",
+              "count": 12
             },
             {
               "word": "保温",
-              "count": 11
+              "count": 9
+            },
+            {
+              "word": "酸味",
+              "count": 7
+            },
+            {
+              "word": "冰袋",
+              "count": 6
+            },
+            {
+              "word": "豆腐渣",
+              "count": 4
+            },
+            {
+              "word": "太干",
+              "count": 4
             }
           ]
         },
@@ -2113,15 +2101,6 @@ window.__DASHBOARD_DATA__ = {
           "skuName": "原味希腊90g单杯",
           "updatedAt": "2026-08-27",
           "daily": [
-            {
-              "date": "2026-08-02",
-              "reviews": 50,
-              "reviewsText": "50+",
-              "bad": 3,
-              "badText": "3",
-              "goodRate": 0.973,
-              "goodRateText": "97.3%"
-            },
             {
               "date": "2026-08-13",
               "reviews": 43,
@@ -2166,6 +2145,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "3",
               "goodRate": 0.97,
               "goodRateText": "97%"
+            },
+            {
+              "date": "2026-08-20",
+              "reviews": 50,
+              "reviewsText": "50+",
+              "bad": 3,
+              "badText": "3",
+              "goodRate": 0.973,
+              "goodRateText": "97.3%"
             },
             {
               "date": "2026-08-21",
@@ -2260,27 +2248,19 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "很干",
-              "count": 4
-            },
-            {
-              "word": "那种",
+              "word": "口感",
               "count": 3
             },
             {
-              "word": "简直",
+              "word": "难吃",
               "count": 3
             },
             {
-              "word": "喝了",
+              "word": "难喝",
               "count": 3
             },
             {
-              "word": "以为是",
-              "count": 2
-            },
-            {
-              "word": "不好",
+              "word": "不好吃",
               "count": 2
             },
             {
@@ -2288,20 +2268,16 @@ window.__DASHBOARD_DATA__ = {
               "count": 2
             },
             {
-              "word": "好吃",
+              "word": "很干",
               "count": 2
             },
             {
-              "word": "外面",
-              "count": 2
+              "word": "没有冰袋",
+              "count": 1
             },
             {
-              "word": "结果",
-              "count": 2
-            },
-            {
-              "word": "甜的",
-              "count": 2
+              "word": "豆腐渣",
+              "count": 1
             },
             {
               "word": "冰袋",
@@ -2318,15 +2294,6 @@ window.__DASHBOARD_DATA__ = {
           "skuName": "山楂干噎100g",
           "updatedAt": "2026-08-27",
           "daily": [
-            {
-              "date": "2026-08-02",
-              "reviews": 1000,
-              "reviewsText": "1000+",
-              "bad": 3,
-              "badText": "3",
-              "goodRate": 0.9259999999999999,
-              "goodRateText": "92.6%"
-            },
             {
               "date": "2026-08-13",
               "reviews": 891,
@@ -2371,6 +2338,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "3",
               "goodRate": 0.9264,
               "goodRateText": "92.64%"
+            },
+            {
+              "date": "2026-08-20",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 3,
+              "badText": "3",
+              "goodRate": 0.9259999999999999,
+              "goodRateText": "92.6%"
             },
             {
               "date": "2026-08-21",
@@ -2429,7 +2405,7 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "好吃",
+              "word": "报喝",
               "count": 1
             }
           ]
@@ -2443,15 +2419,6 @@ window.__DASHBOARD_DATA__ = {
           "skuName": "0蔗糖希腊70g3联/单杯",
           "updatedAt": "2026-08-27",
           "daily": [
-            {
-              "date": "2026-08-02",
-              "reviews": 4000,
-              "reviewsText": "4000+",
-              "bad": null,
-              "badText": "未展示",
-              "goodRate": null,
-              "goodRateText": "未展示"
-            },
             {
               "date": "2026-08-13",
               "reviews": 3000,
@@ -2490,6 +2457,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-19",
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-08-20",
               "reviews": 4000,
               "reviewsText": "4000+",
               "bad": null,
