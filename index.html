@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O2O 商品评价看板</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg2:#101935;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --text:#eff4ff;
+      --muted:#aeb9d6;
+      --good:#4ee3a0;
+      --bad:#ff6b7a;
+      --warn:#ffcd62;
+      --accent:#74a8ff;
+      --accent2:#9c7bff;
+      --shadow:0 24px 80px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(116,168,255,.28), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(156,123,255,.22), transparent 22%),
+        radial-gradient(circle at 70% 95%, rgba(78,227,160,.16), transparent 22%),
+        linear-gradient(180deg, #08101f 0%, #0b1020 40%, #080d18 100%);
+      overflow-x:hidden;
+    }
+    .shell{
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .topbar{
+      display:flex;
+      gap:16px;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .title-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .eyebrow{
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--muted);
+    }
+    h1{
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+    .subhead{
+      color:var(--muted);
+      font-size:14px;
+      max-width: 760px;
+      line-height:1.7;
+    }
+    .status{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
+      color:var(--muted);
+      min-width: 220px;
+      text-align:right;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--good);
+      box-shadow:0 0 0 5px rgba(78,227,160,.12);
+    }
+    .directory{
+      position:sticky;
+      top:12px;
+      z-index:30;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:0;
+      padding:6px 8px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(8,13,24,.45);
+      backdrop-filter: blur(10px);
+    }
+    .dir-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      box-shadow:none;
+    }
+    .dir-btn:hover{background:rgba(255,255,255,.10)}
+    .sku-pills{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .sku-chip{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .sku-chip.active{
+      background:rgba(116,168,255,.22);
+      border-color:rgba(116,168,255,.42);
+    }
+    .platform-section{
+      margin-top:18px;
+      display:grid;
+      gap:16px;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .platform-headline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .platform-title{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.03em;
+    }
+    .controls, .layout{
+      display:grid;
+      gap:16px;
+    }
+    .controls{
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 14px 0 16px;
+    }
+    .field{
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height: 84px;
+    }
+    .field label{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .field select, .field input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:var(--text);
+      font-size:15px;
+      appearance:none;
+    }
+    .layout{
+      grid-template-columns: minmax(0, 1.6fr) minmax(320px, .9fr);
+      align-items:stretch;
+    }
+    .stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .stack > .card{
+      flex:1;
+    }
+    .row{
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .full-span{
+      grid-column: 1 / -1;
+    }
+    .card{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:auto -20% -50% auto;
+      width:220px;
+      height:220px;
+      background: radial-gradient(circle, rgba(116,168,255,.16), transparent 65%);
+      pointer-events:none;
+    }
+    .metric{
+      padding:18px;
+      min-height:132px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .metric .label{
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .metric .value{
+      font-size:34px;
+      font-weight:700;
+      letter-spacing:-.04em;
+    }
+    .metric .delta{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .positive{color:var(--good)}
+    .negative{color:var(--bad)}
+    .panel{
+      padding:18px;
+    }
+    .panel-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .panel-title{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+    .panel-desc{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .chart-wrap{
+      height:340px;
+    }
+    svg{display:block;width:100%;height:100%}
+    .legend{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .legend span{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .legend i{
+      width:12px;height:12px;border-radius:4px;display:inline-block;
+    }
+    .side-top{
+      display:grid;
+      gap:16px;
+    }
+    .topic-list{
+      display:grid;
+      gap:12px;
+    }
+    .topic{
+      display:grid;
+      gap:8px;
+    }
+    .topic-head{
+      display:flex;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .bar{
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      overflow:hidden;
+    }
+    .bar > span{
+      display:block;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg, var(--bad), var(--warn));
+    }
+    .hotwords{
+      display:flex;
+      flex:1;
+      gap:8px;
+      flex-wrap:wrap;
+      align-content:flex-start;
+      align-items:flex-start;
+      margin-top:12px;
+      padding:8px 2px 0;
+    }
+    .tag{
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px;
+      color:#fff;
+    }
+    .table-wrap{
+      overflow:auto;
+      border-radius:20px;
+      border:1px solid var(--line);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 880px;
+      background:rgba(7,11,22,.48);
+    }
+    thead th{
+      text-align:left;
+      padding:14px 16px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
+    }
+    tbody td{
+      padding:14px 16px;
+      border-top:1px solid rgba(255,255,255,.06);
+      vertical-align:top;
+      color:#f5f8ff;
+      line-height:1.55;
+      font-size:14px;
+    }
+    .detail-table tbody td{
+      white-space:nowrap;
+      word-break:keep-all;
+    }
+    .muted{color:var(--muted)}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      font-size:12px;
+    }
+    .badge.bad{color:#ffd2d7;background:rgba(255,107,122,.12)}
+    .badge.good{color:#caffe7;background:rgba(78,227,160,.10)}
+    .footer{
+      margin:18px 0 10px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+    .two-col{
+      display:grid;
+      gap:16px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .mini{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+    .kv{
+      display:grid;
+      gap:12px;
+    }
+    .kv-item{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:#fff;
+    }
+    .kv-item:first-child{border-top:none;padding-top:0}
+    .kv-item span{color:var(--muted)}
+    .detail-table{
+      margin-top:16px;
+    }
+    .table-wrap{
+      max-height: 360px;
+      overflow:auto;
+      scrollbar-gutter: stable;
+    }
+    .table-wrap thead th{
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    @media (max-width: 1180px){
+      .layout,.row,.controls,.two-col{grid-template-columns:1fr}
+      .status{align-items:flex-start;text-align:left}
+      .topbar{flex-direction:column}
+      .chart-wrap{height:300px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="eyebrow">O2O Product Review Monitor</div>
+        <div class="title-row">
+          <h1>乐纯O2O重点sku评价看板</h1>
+          <nav class="directory" id="directory"></nav>
+        </div>
+        <div class="subhead">按小象、叮咚、朴朴三个平台分成独立板块；每个板块只展示自己的 SKU 数据，互不合计。</div>
+      </div>
+      <div class="status">
+        <div class="pill"><i class="dot"></i><span id="refreshText">数据状态：目录式分区</span></div>
+        <div>更新时间 <strong id="updatedAt">-</strong></div>
+      </div>
+    </div>
+
+    <div id="sections" class="stack"></div>
+
+    <div class="footer">
+      说明：每个平台是独立板块，SKU 下拉只影响本平台的数据展示，不会和其他平台合并计算。
+    </div>
+  </div>
+
+  <script src="./data-template.js"></script>
+  <script>
+    const fmt = new Intl.NumberFormat("zh-CN");
+    const clone = (value) => JSON.parse(JSON.stringify(value));
+    const slug = (text) => text.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "-");
+    const latestUpdated = (platforms) => {
+      const stamps = platforms.flatMap((p) => p.skus.map((s) => s.updatedAt).filter(Boolean));
+      return stamps.sort().at(-1) ?? "-";
+    };
+    const toDateValue = (value) => {
+      if (!value) return null;
+      const text = String(value).trim();
+      let match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+      match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+      match = text.match(/^(\d{1,2})[.-](\d{1,2})$/);
+      if (match) return Date.UTC(2026, Number(match[1]) - 1, Number(match[2]));
+      return null;
+    };
+    const shortDate = (value) => {
+      if (!value) return "-";
+      const text = String(value).trim();
+      let match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (match) return `${match[2]}-${match[3]}`;
+      match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if (match) return `${String(match[2]).padStart(2, "0")}-${String(match[3]).padStart(2, "0")}`;
+      match = text.match(/^(\d{1,2})[.-](\d{1,2})$/);
+      if (match) return `${String(match[1]).padStart(2, "0")}-${String(match[2]).padStart(2, "0")}`;
+      return text;
+    };
+    const formatMaybeCount = (value) => {
+      if (value == null || value === "") return "-";
+      if (typeof value === "string" && value.includes("+")) return value;
+      const num = Number(value);
+      return Number.isFinite(num) ? fmt.format(num) : String(value);
+    };
+    const currentReviewsValue = (row) => {
+      if (!row) return null;
+      if (typeof row.reviews === "number") return row.reviews;
+      if (typeof row.reviews === "string") {
+        const cleaned = row.reviews.replace(/[^\d.-]/g, "");
+        if (!cleaned) return null;
+        const num = Number(cleaned);
+        return Number.isFinite(num) ? num : null;
+      }
+      if (typeof row.good === "number" && typeof row.bad === "number") return row.good + row.bad + (typeof row.neutral === "number" ? row.neutral : 0);
+      return null;
+    };
+    const currentGoodRate = (row) => {
+      if (!row) return null;
+      if (typeof row.goodRate === "number") return row.goodRate;
+      if (typeof row.good === "number") {
+        const reviews = currentReviewsValue(row);
+        return reviews ? row.good / reviews : null;
+      }
+      return null;
+    };
+    const currentBadCount = (row) => {
+      if (!row) return null;
+      if (typeof row.bad === "number") return row.bad;
+      if (typeof row.bad === "string") {
+        const cleaned = row.bad.replace(/[^\d.-]/g, "");
+        if (!cleaned) return null;
+        const num = Number(cleaned);
+        return Number.isFinite(num) ? num : null;
+      }
+      return null;
+    };
+    const formatDelta = (current, previous, digits = 0, unit = "") => {
+      if (current == null || previous == null) return "较昨日 -";
+      const diff = current - previous;
+      const sign = diff > 0 ? "+" : "";
+      return `较昨日 ${sign}${Number(diff).toFixed(digits)}${unit}`;
+    };
+    const makeSku = (skuName, overrides = {}) => ({
+      skuName,
+      updatedAt: "2026-08-26 10:18",
+      daily: [
+        { date: "08-13", reviews: 132, good: 121, neutral: 5, bad: 6 },
+        { date: "08-14", reviews: 148, good: 134, neutral: 7, bad: 7 },
+        { date: "08-15", reviews: 161, good: 149, neutral: 5, bad: 7 },
+        { date: "08-16", reviews: 175, good: 162, neutral: 6, bad: 7 },
+        { date: "08-17", reviews: 181, good: 166, neutral: 8, bad: 7 },
+        { date: "08-18", reviews: 193, good: 176, neutral: 9, bad: 8 },
+        { date: "08-19", reviews: 207, good: 191, neutral: 8, bad: 8 },
+        { date: "08-20", reviews: 220, good: 203, neutral: 9, bad: 8 },
+        { date: "08-21", reviews: 228, good: 209, neutral: 10, bad: 9 },
+        { date: "08-22", reviews: 215, good: 197, neutral: 10, bad: 8 },
+        { date: "08-23", reviews: 238, good: 218, neutral: 11, bad: 9 },
+        { date: "08-24", reviews: 244, good: 223, neutral: 11, bad: 10 },
+        { date: "08-25", reviews: 261, good: 238, neutral: 12, bad: 11 },
+        { date: "08-26", reviews: 269, good: 246, neutral: 12, bad: 11 }
+      ],
+      reviews: [
+        { date: "08-26 09:42", city: "上海", user: "小林", channel: "小时达", category: "包装破损", score: 2, content: "盒子压坏了，草莓有几颗已经出汁，希望配送能再稳一点。", status: "待处理" },
+        { date: "08-26 08:11", city: "北京", user: "小周", channel: "自提", category: "口感偏差", score: 2, content: "这批草莓偏酸，和前两次买到的口感差很多。", status: "已跟进" },
+        { date: "08-25 21:03", city: "杭州", user: "阿杰", channel: "第三方配送", category: "配送延迟", score: 1, content: "承诺 30 分钟送达，实际等了 70 分钟，影响很大。", status: "待处理" },
+        { date: "08-25 19:25", city: "上海", user: "Mia", channel: "小时达", category: "缺斤少两", score: 2, content: "标注 500g，实收感觉明显少一些，建议复核称重。", status: "待处理" },
+        { date: "08-25 16:48", city: "北京", user: "大鹏", channel: "自提", category: "新鲜度", score: 2, content: "底部有几颗不太新鲜，建议加严拣货。", status: "已跟进" },
+        { date: "08-24 11:26", city: "杭州", user: "小雨", channel: "小时达", category: "客服响应", score: 2, content: "反馈后响应稍慢，希望能更快处理售后。", status: "已跟进" },
+        { date: "08-24 10:12", city: "上海", user: "Kiki", channel: "第三方配送", category: "包装破损", score: 1, content: "保鲜盒裂了，里面果汁外漏，体验很差。", status: "待处理" },
+        { date: "08-23 18:56", city: "北京", user: "小北", channel: "小时达", category: "口感偏差", score: 2, content: "甜度不稳定，和页面描述不一致。", status: "待处理" },
+        { date: "08-23 15:38", city: "杭州", user: "阿哲", channel: "自提", category: "轻微瑕疵", score: 3, content: "外观有少量碰伤，但不影响食用。", status: "已关闭" }
+      ],
+      topics: [
+        { label: "配送延迟", count: 18 },
+        { label: "包装破损", count: 15 },
+        { label: "口感偏差", count: 12 },
+        { label: "缺斤少两", count: 10 },
+        { label: "新鲜度", count: 9 }
+      ],
+      hotwords: [
+        { word: "慢", count: 12 },
+        { word: "破损", count: 10 },
+        { word: "出汁", count: 9 },
+        { word: "酸", count: 8 },
+        { word: "不新鲜", count: 7 },
+        { word: "称重", count: 6 },
+        { word: "售后", count: 6 },
+        { word: "响应慢", count: 5 },
+        { word: "体验差", count: 5 },
+        { word: "外漏", count: 4 },
+        { word: "复核", count: 4 }
+      ],
+      ...overrides
+    });
+
+    const DEFAULT_DATA = {
+      platforms: [
+        {
+          name: "小象",
+          skus: [
+            makeSku("鲜切草莓 500g"),
+            makeSku("丹东草莓 250g"),
+            makeSku("草莓礼盒 1kg"),
+            makeSku("有机草莓 400g")
+          ]
+        },
+        {
+          name: "叮咚",
+          skus: [makeSku("鲜切草莓 500g")]
+        },
+        {
+          name: "朴朴",
+          skus: [makeSku("鲜切草莓 500g")]
+        }
+      ]
+    };
+
+    const data = window.__DASHBOARD_DATA__ ?? clone(DEFAULT_DATA);
+    const state = Object.fromEntries(data.platforms.map((platform) => [platform.name, platform.skus[0]?.skuName ?? ""]));
+    const $ = (id) => document.getElementById(id);
+
+    function getPlatform(name) {
+      return data.platforms.find((platform) => platform.name === name) ?? data.platforms[0];
+    }
+
+    function getSku(platformName) {
+      const platform = getPlatform(platformName);
+      return platform.skus.find((sku) => sku.skuName === state[platformName]) ?? platform.skus[0];
+    }
+
+    function initSelect(el, values, current) {
+      el.innerHTML = values.map((value) => `<option value="${value}">${value}</option>`).join("");
+      el.value = current;
+    }
+
+    function metricCard(label, value, delta, tone = "") {
+      return `
+        <div class="card metric">
+          <div class="label"><span>${label}</span><span class="muted">${delta.label}</span></div>
+          <div class="value ${tone}">${value}</div>
+          <div class="delta">${delta.text}</div>
+        </div>
+      `;
+    }
+
+    function renderDirectory() {
+      $("directory").innerHTML = data.platforms
+        .map((platform) => `<a class="dir-btn" href="#platform-${slug(platform.name)}">${platform.name}</a>`)
+        .join("");
+    }
+
+    function sectionMarkup(platform) {
+      const sectionId = `platform-${slug(platform.name)}`;
+      return `
+        <section class="platform-section" id="${sectionId}">
+          <div class="card panel">
+            <div class="section-head">
+              <div>
+                <div class="platform-headline">
+                  <h2 class="platform-title">${platform.name}</h2>
+                </div>
+                <div class="panel-desc">${platform.name} 板块，数据只在本板块内切换。</div>
+              </div>
+            </div>
+            <div class="sku-pills" id="chips-${slug(platform.name)}"></div>
+            <div class="row" id="metrics-${slug(platform.name)}" style="margin-top:16px;"></div>
+            <div class="layout" style="margin-top:16px;">
+              <div class="stack">
+                <div class="card panel">
+                  <div class="panel-header">
+                    <div>
+                      <h3 class="panel-title">近14天好评率趋势</h3>
+                      <div class="panel-desc">本平台当前 SKU 的好评率走势。</div>
+                    </div>
+                    <div class="legend">
+                      <span><i style="background:var(--good)"></i>好评率</span>
+                    </div>
+                  </div>
+                  <div class="chart-wrap">
+                    <svg id="chart-${slug(platform.name)}" viewBox="0 0 940 340" preserveAspectRatio="none" aria-label="趋势图"></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="card mini">
+                <div class="panel-header">
+                  <div>
+                    <h3 class="panel-title" style="font-size:16px;">关键词热区</h3>
+                    <div class="panel-desc">从差评内容中抽取的高频词。</div>
+                  </div>
+                </div>
+                <div class="hotwords" id="hotwords-${slug(platform.name)}"></div>
+              </div>
+              <div class="card panel detail-table full-span">
+                <div class="panel-header">
+                  <div>
+                    <h3 class="panel-title">差评内容明细</h3>
+                    <div class="panel-desc">该 SKU 的差评文本明细。</div>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>日期</th>
+                        <th>城市</th>
+                        <th>用户名</th>
+                        <th>差评内容</th>
+                      </tr>
+                    </thead>
+                    <tbody id="reviews-${slug(platform.name)}"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderChart(svg, rows) {
+      const plotRows = rows.filter((row) => currentGoodRate(row) != null);
+      if (!plotRows.length) {
+        svg.innerHTML = `
+          <text x="50%" y="50%" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="14">暂无趋势数据</text>
+        `;
+        return;
+      }
+      const w = 940;
+      const h = 340;
+      const pad = { top: 24, right: 64, bottom: 42, left: 50 };
+      const innerW = w - pad.left - pad.right;
+      const innerH = h - pad.top - pad.bottom;
+      const goodRates = plotRows.map((row) => currentGoodRate(row) ?? 0);
+      const maxRate = 1;
+      const xStep = plotRows.length > 1 ? innerW / (plotRows.length - 1) : innerW;
+
+      const points = goodRates.map((rate, index) => [pad.left + index * xStep, pad.top + (1 - rate / maxRate) * innerH]);
+      const goodLine = points.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0]} ${point[1]}`).join(" ");
+
+      const grid = [0, 0.25, 0.5, 0.75, 1]
+        .map((tick) => {
+          const y = pad.top + innerH * tick;
+          return `<line x1="${pad.left}" y1="${y}" x2="${w - pad.right}" y2="${y}" stroke="rgba(255,255,255,.08)" />`;
+        })
+        .join("");
+
+      const labels = plotRows
+        .map((row, index) => `<text x="${pad.left + index * xStep}" y="${h - 16}" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="11">${shortDate(row.date)}</text>`)
+        .join("");
+
+      const goodDots = points
+        .map((point, index) => `<circle cx="${point[0]}" cy="${point[1]}" r="4.2" fill="var(--good)" stroke="rgba(255,255,255,.95)" stroke-width="1.5"><title>${shortDate(plotRows[index].date)}：${(goodRates[index] * 100).toFixed(1)}%</title></circle>`)
+        .join("");
+
+      svg.innerHTML = `
+        ${grid}
+        <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${h - pad.bottom}" stroke="rgba(255,255,255,.10)" />
+        <line x1="${pad.left}" y1="${h - pad.bottom}" x2="${w - pad.right}" y2="${h - pad.bottom}" stroke="rgba(255,255,255,.10)" />
+        <path d="${goodLine}" fill="none" stroke="var(--good)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        ${goodDots}
+        ${labels}
+        <text x="14" y="40" fill="rgba(255,255,255,.58)" font-size="11">好评率</text>
+        <text x="14" y="${h - 56}" fill="rgba(255,255,255,.58)" font-size="11">14天趋势</text>
+      `;
+    }
+
+    function renderHotwords(container, hotwords) {
+      if (!hotwords.length) {
+        container.innerHTML = `<div class="muted">暂无关键词</div>`;
+        return;
+      }
+      const max = Math.max(...hotwords.map((word) => typeof word === "string" ? 1 : (word.count ?? 1)), 1);
+      container.innerHTML = hotwords.map((word, index) => {
+        const text = typeof word === "string" ? word : word.word;
+        const count = typeof word === "string" ? 1 : (word.count ?? 1);
+        const size = 13 + Math.round((count / max) * 13);
+        const dx = (index % 3) * 6;
+        const dy = (index % 4) * 8;
+        return `<span class="tag" style="font-size:${size}px; transform:translate(${dx}px, ${dy}px)">${text}</span>`;
+      }).join("");
+    }
+
+    function renderReviews(container, reviews) {
+      container.innerHTML = reviews.length
+        ? reviews
+            .map(
+              (review) => `
+                <tr>
+                  <td>${shortDate(review.date)}</td>
+                  <td>${review.city ?? "-"}</td>
+                  <td>${review.user ?? "-"}</td>
+                  <td>${review.content}</td>
+                </tr>
+              `
+            )
+            .join("")
+        : `<tr><td colspan="4" class="muted">暂无差评明细</td></tr>`;
+    }
+
+    function renderSkuChips(container, platformName, platform) {
+      container.innerHTML = platform.skus
+        .map(
+          (sku) => `
+            <button class="sku-chip ${state[platformName] === sku.skuName ? "active" : ""}" data-sku="${sku.skuName}">${sku.skuName}</button>
+          `
+        )
+        .join("");
+      container.querySelectorAll(".sku-chip").forEach((button) => {
+        button.onclick = () => {
+          state[platformName] = button.dataset.sku;
+          renderSection(platformName);
+        };
+      });
+    }
+
+    function renderMetrics(container, rows) {
+      const today = rows.at(-1) ?? null;
+      const yesterday = rows.at(-2) ?? null;
+      const todayReviews = currentReviewsValue(today);
+      const yesterdayReviews = currentReviewsValue(yesterday);
+      const todayGoodRate = currentGoodRate(today);
+      const yesterdayGoodRate = currentGoodRate(yesterday);
+      const todayBad = currentBadCount(today);
+      const yesterdayBad = currentBadCount(yesterday);
+
+      container.innerHTML = [
+        metricCard("评价数量", formatMaybeCount(today?.reviewsText ?? todayReviews), { label: "较昨日", text: formatDelta(todayReviews, yesterdayReviews) }),
+        metricCard("好评率", todayGoodRate == null ? "-" : `${(todayGoodRate * 100).toFixed(1)}%`, { label: "较昨日", text: formatDelta(todayGoodRate, yesterdayGoodRate, 1, " 个百分点") }, "positive"),
+        metricCard("差评数量", todayBad == null ? "-" : fmt.format(todayBad), { label: "较昨日", text: formatDelta(todayBad, yesterdayBad) }, "negative")
+      ].join("");
+    }
+
+    function renderSection(platformName) {
+      const platform = getPlatform(platformName);
+      const sku = getSku(platformName);
+      const key = slug(platformName);
+      const rows = [...(sku.daily ?? [])].sort((a, b) => (toDateValue(a.date) ?? 0) - (toDateValue(b.date) ?? 0)).slice(-14);
+
+      renderSkuChips($(`chips-${key}`), platformName, platform);
+      renderMetrics($(`metrics-${key}`), rows);
+      renderChart($(`chart-${key}`), rows);
+      renderHotwords($(`hotwords-${key}`), sku.hotwords ?? []);
+      renderReviews($(`reviews-${key}`), sku.reviews ?? []);
+    }
+
+    function renderAll() {
+      renderDirectory();
+      $("sections").innerHTML = data.platforms.map((platform) => sectionMarkup(platform)).join("");
+      data.platforms.forEach((platform) => renderSection(platform.name));
+      $("updatedAt").textContent = latestUpdated(data.platforms);
+      $("refreshText").textContent = window.__DASHBOARD_DATA__ ? "数据状态：已接入外部数据" : "数据状态：样例数据";
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>
