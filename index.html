@@ -851,7 +851,7 @@
 
       container.innerHTML = [
         metricCard("评价数量", formatMaybeCount(today?.reviewsText ?? todayReviews), { label: "较昨日", text: formatDelta(todayReviews, yesterdayReviews) }),
-        metricCard("好评率", today?.goodRateText ?? (todayGoodRate == null ? "-" : `${(todayGoodRate * 100).toFixed(2)}%`), { label: "较昨日", text: formatDelta(todayGoodRate, yesterdayGoodRate, 2, " 个百分点", 100) }, "positive"),
+        metricCard("好评率", today?.goodRateText ?? (todayGoodRate == null ? "-" : `${(todayGoodRate * 100).toFixed(2)}%`), { label: "较昨日", text: formatDelta(todayGoodRate, yesterdayGoodRate, 2, "%", 100) }, "positive"),
         metricCard("差评数量", formatMaybeCount(today?.badText ?? todayBad), { label: "较昨日", text: formatDelta(todayBad, yesterdayBad) }, "negative")
       ].join("");
     }
