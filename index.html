@@ -485,7 +485,7 @@
     };
     const toDateValue = (value) => {
       if (!value) return null;
-      const text = String(value).trim();
+      const text = String(value).trim().split(/[ T]/)[0];
       let match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
       if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
       match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
@@ -496,7 +496,7 @@
     };
     const shortDate = (value) => {
       if (!value) return "-";
-      const text = String(value).trim();
+      const text = String(value).trim().split(/[ T]/)[0];
       let match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
       if (match) return `${match[2]}-${match[3]}`;
       match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
@@ -504,6 +504,26 @@
       match = text.match(/^(\d{1,2})[.-](\d{1,2})$/);
       if (match) return `${String(match[1]).padStart(2, "0")}-${String(match[2]).padStart(2, "0")}`;
       return text;
+    };
+    const parseCountValue = (value) => {
+      if (value == null || value === "") return null;
+      if (typeof value === "number") return Number.isFinite(value) ? value : null;
+      const text = String(value).trim();
+      if (!text || text === "-" || text === "未展示") return null;
+      const cleaned = text.replace(/[^\d.-]/g, "");
+      if (!cleaned) return null;
+      const num = Number(cleaned);
+      return Number.isFinite(num) ? num : null;
+    };
+    const parsePercentValue = (value) => {
+      if (value == null || value === "") return null;
+      if (typeof value === "number") return Number.isFinite(value) ? value : null;
+      const text = String(value).trim();
+      if (!text || text === "-" || text === "未展示") return null;
+      const cleaned = text.replace(/%/g, "").replace(/[^\d.-]/g, "");
+      if (!cleaned) return null;
+      const num = Number(cleaned);
+      return Number.isFinite(num) ? num / 100 : null;
     };
     const formatMaybeCount = (value) => {
       if (value == null || value === "") return "-";
@@ -514,18 +534,16 @@
     const currentReviewsValue = (row) => {
       if (!row) return null;
       if (typeof row.reviews === "number") return row.reviews;
-      if (typeof row.reviews === "string") {
-        const cleaned = row.reviews.replace(/[^\d.-]/g, "");
-        if (!cleaned) return null;
-        const num = Number(cleaned);
-        return Number.isFinite(num) ? num : null;
-      }
+      const parsed = parseCountValue(row.reviews ?? row.reviewsText);
+      if (parsed != null) return parsed;
       if (typeof row.good === "number" && typeof row.bad === "number") return row.good + row.bad + (typeof row.neutral === "number" ? row.neutral : 0);
       return null;
     };
     const currentGoodRate = (row) => {
       if (!row) return null;
       if (typeof row.goodRate === "number") return row.goodRate;
+      const parsed = parsePercentValue(row.goodRate ?? row.goodRateText);
+      if (parsed != null) return parsed;
       if (typeof row.good === "number") {
         const reviews = currentReviewsValue(row);
         return reviews ? row.good / reviews : null;
@@ -535,17 +553,13 @@
     const currentBadCount = (row) => {
       if (!row) return null;
       if (typeof row.bad === "number") return row.bad;
-      if (typeof row.bad === "string") {
-        const cleaned = row.bad.replace(/[^\d.-]/g, "");
-        if (!cleaned) return null;
-        const num = Number(cleaned);
-        return Number.isFinite(num) ? num : null;
-      }
+      const parsed = parseCountValue(row.bad ?? row.badText);
+      if (parsed != null) return parsed;
       return null;
     };
-    const formatDelta = (current, previous, digits = 0, unit = "") => {
+    const formatDelta = (current, previous, digits = 0, unit = "", scale = 1) => {
       if (current == null || previous == null) return "较昨日-";
-      const diff = current - previous;
+      const diff = (current - previous) * scale;
       const factor = 10 ** digits;
       const truncated = Math.trunc(diff * factor) / factor;
       if (truncated === 0) return "较昨日-";
@@ -761,7 +775,7 @@
         .join("");
 
       const goodDots = points
-        .map((point, index) => `<circle cx="${point[0]}" cy="${point[1]}" r="4.2" fill="var(--good)" stroke="rgba(255,255,255,.95)" stroke-width="1.5"><title>${shortDate(plotRows[index].date)}：${(goodRates[index] * 100).toFixed(1)}%</title></circle>`)
+        .map((point, index) => `<circle cx="${point[0]}" cy="${point[1]}" r="4.2" fill="var(--good)" stroke="rgba(255,255,255,.95)" stroke-width="1.5"><title>${shortDate(plotRows[index].date)}：${plotRows[index].goodRateText ?? `${(goodRates[index] * 100).toFixed(2)}%`}</title></circle>`)
         .join("");
 
       svg.innerHTML = `
@@ -837,8 +851,8 @@
 
       container.innerHTML = [
         metricCard("评价数量", formatMaybeCount(today?.reviewsText ?? todayReviews), { label: "较昨日", text: formatDelta(todayReviews, yesterdayReviews) }),
-        metricCard("好评率", todayGoodRate == null ? "-" : `${(todayGoodRate * 100).toFixed(1)}%`, { label: "较昨日", text: formatDelta(todayGoodRate, yesterdayGoodRate, 1, " 个百分点") }, "positive"),
-        metricCard("差评数量", todayBad == null ? "-" : fmt.format(todayBad), { label: "较昨日", text: formatDelta(todayBad, yesterdayBad) }, "negative")
+        metricCard("好评率", today?.goodRateText ?? (todayGoodRate == null ? "-" : `${(todayGoodRate * 100).toFixed(2)}%`), { label: "较昨日", text: formatDelta(todayGoodRate, yesterdayGoodRate, 2, " 个百分点", 100) }, "positive"),
+        metricCard("差评数量", formatMaybeCount(today?.badText ?? todayBad), { label: "较昨日", text: formatDelta(todayBad, yesterdayBad) }, "negative")
       ].join("");
     }
 
