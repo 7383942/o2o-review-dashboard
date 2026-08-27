@@ -546,9 +546,10 @@
     const formatDelta = (current, previous, digits = 0, unit = "") => {
       if (current == null || previous == null) return "较昨日-";
       const diff = current - previous;
-      if (diff === 0) return "较昨日-";
+      const rounded = Number(diff.toFixed(digits));
+      if (rounded === 0) return "较昨日-";
       const sign = diff > 0 ? "+" : "";
-      return `较昨日 ${sign}${Number(diff).toFixed(digits)}${unit}`;
+      return `较昨日 ${sign}${rounded.toFixed(digits)}${unit}`;
     };
     const makeSku = (skuName, overrides = {}) => ({
       skuName,
