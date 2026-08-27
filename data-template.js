@@ -9,69 +9,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "7200+",
+              "reviews": 7200,
+              "reviewsText": "7200+",
               "bad": 335,
-              "goodRate": 0.953
+              "badText": "335",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-13",
-              "reviews": "7000+",
+              "reviews": 7000,
+              "reviewsText": "7000+",
               "bad": 326,
-              "goodRate": 0.953
+              "badText": "326",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-14",
-              "reviews": "7000+",
+              "reviews": 7000,
+              "reviewsText": "7000+",
               "bad": 326,
-              "goodRate": 0.953
+              "badText": "326",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-17",
-              "reviews": "7100+",
+              "reviews": 7100,
+              "reviewsText": "7100+",
               "bad": 330,
-              "goodRate": 0.953
+              "badText": "330",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-18",
-              "reviews": "7100+",
+              "reviews": 7100,
+              "reviewsText": "7100+",
               "bad": 333,
-              "goodRate": 0.953
+              "badText": "333",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-19",
-              "reviews": "7200+",
+              "reviews": 7200,
+              "reviewsText": "7200+",
               "bad": 335,
-              "goodRate": 0.953
+              "badText": "335",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-21",
-              "reviews": "7200+",
+              "reviews": 7200,
+              "reviewsText": "7200+",
               "bad": 337,
-              "goodRate": 0.953
+              "badText": "337",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-24",
-              "reviews": "7200+",
+              "reviews": 7200,
+              "reviewsText": "7200+",
               "bad": 340,
-              "goodRate": 0.953
+              "badText": "340",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-25",
-              "reviews": "7400+",
+              "reviews": 7400,
+              "reviewsText": "7400+",
               "bad": 340,
-              "goodRate": 0.954
+              "badText": "340",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             },
             {
               "date": "2026-08-26",
-              "reviews": "7400+",
+              "reviews": 7400,
+              "reviewsText": "7400+",
               "bad": 341,
-              "goodRate": 0.954
+              "badText": "341",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             },
             {
               "date": "2026-08-27",
-              "reviews": "7400+",
+              "reviews": 7400,
+              "reviewsText": "7400+",
               "bad": 341,
-              "goodRate": 0.954
+              "badText": "341",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
@@ -234,7 +267,7 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-06-14",
               "city": "佛山",
-              "user": "99",
+              "user": "-",
               "content": "好难吃"
             },
             {
@@ -534,7 +567,7 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-05-26",
               "city": "南京",
-              "user": "99",
+              "user": "-",
               "content": "目前吃过最难吃的酸奶。 这个口感不喜欢。非常干"
             },
             {
@@ -588,7 +621,7 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-05-23",
               "city": "东莞",
-              "user": "99",
+              "user": "-",
               "content": "真的是一点味道都没有，难以下咽 以水场 普通口味的，真是慎买，一股粉味，只有酸，口感不 好，加了点蜂蜜我都吃不下去，太难吃了。"
             },
             {
@@ -612,13 +645,13 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-05-22",
               "city": "北京",
-              "user": "99",
+              "user": "-",
               "content": "不好吃，厚重挂嗓子。 酸奶外壳脏兮兮的，感觉像掉在地上的"
             },
             {
               "date": "2026-05-21",
               "city": "合肥",
-              "user": "99",
+              "user": "-",
               "content": "不好吃，厚重挂嗓子。 酸奶外壳脏兮兮的，感觉像掉在地上的"
             },
             {
@@ -714,7 +747,7 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-05-12",
               "city": "上海",
-              "user": "99",
+              "user": "-",
               "content": "希腊酸奶对我来说一直是好吃无法给负担的选择，偏 偏乐纯牌子的颠覆我对酸奶的认知，好！难！吃！ 啊！你们产品上市前不做市调？ 居然一股很涩很黏腻"
             },
             {
@@ -878,69 +911,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "110+",
+              "reviews": 110,
+              "reviewsText": "110+",
               "bad": 6,
-              "goodRate": 0.955
+              "badText": "6",
+              "goodRate": 0.955,
+              "goodRateText": "95.5%"
             },
             {
               "date": "2026-08-13",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 0,
-              "goodRate": 1
+              "badText": "0",
+              "goodRate": 1,
+              "goodRateText": "100%"
             },
             {
               "date": "2026-08-14",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 1,
-              "goodRate": 0.984
+              "badText": "1",
+              "goodRate": 0.9840000000000001,
+              "goodRateText": "98.4%"
             },
             {
               "date": "2026-08-17",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 2,
-              "goodRate": 0.974
+              "badText": "2",
+              "goodRate": 0.9740000000000001,
+              "goodRateText": "97.4%"
             },
             {
               "date": "2026-08-18",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 3,
-              "goodRate": 0.967
+              "badText": "3",
+              "goodRate": 0.9670000000000001,
+              "goodRateText": "96.7%"
             },
             {
               "date": "2026-08-19",
-              "reviews": "110+",
+              "reviews": 110,
+              "reviewsText": "110+",
               "bad": 3,
-              "goodRate": 0.969
+              "badText": "3",
+              "goodRate": 0.9690000000000001,
+              "goodRateText": "96.9%"
             },
             {
               "date": "2026-08-21",
-              "reviews": "110+",
+              "reviews": 110,
+              "reviewsText": "110+",
               "bad": 6,
-              "goodRate": 0.957
+              "badText": "6",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
             },
             {
               "date": "2026-08-24",
-              "reviews": "150+",
+              "reviews": 150,
+              "reviewsText": "150+",
               "bad": 7,
-              "goodRate": 0.961
+              "badText": "7",
+              "goodRate": 0.961,
+              "goodRateText": "96.1%"
             },
             {
               "date": "2026-08-25",
-              "reviews": "160+",
+              "reviews": 160,
+              "reviewsText": "160+",
               "bad": 8,
-              "goodRate": 0.958
+              "badText": "8",
+              "goodRate": 0.958,
+              "goodRateText": "95.8%"
             },
             {
               "date": "2026-08-26",
-              "reviews": "180+",
+              "reviews": 180,
+              "reviewsText": "180+",
               "bad": 8,
-              "goodRate": 0.962
+              "badText": "8",
+              "goodRate": 0.9620000000000001,
+              "goodRateText": "96.2%"
             },
             {
               "date": "2026-08-27",
-              "reviews": "190+",
+              "reviews": 200,
+              "reviewsText": "200+",
               "bad": 10,
-              "goodRate": 0.959
+              "badText": "10",
+              "goodRate": 0.96,
+              "goodRateText": "96%"
             }
           ],
           "reviews": [
@@ -977,13 +1043,13 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-08-16",
               "city": "杭州",
-              "user": "99",
+              "user": "-",
               "content": "太难吃了我的天 没奶味 还有一种嗖了的味道 。"
             },
             {
               "date": "2026-08-13",
               "city": "深圳",
-              "user": "99",
+              "user": "-",
               "content": "好干，刺到嗓子眼了啊"
             }
           ],
@@ -1045,69 +1111,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "2200+",
+              "reviews": 2200,
+              "reviewsText": "2200+",
               "bad": 105,
-              "goodRate": 0.953
+              "badText": "105",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-13",
-              "reviews": "2000+",
+              "reviews": 2000,
+              "reviewsText": "2000+",
               "bad": 102,
-              "goodRate": 0.951
+              "badText": "102",
+              "goodRate": 0.951,
+              "goodRateText": "95.1%"
             },
             {
               "date": "2026-08-14",
-              "reviews": "2100+",
+              "reviews": 2100,
+              "reviewsText": "2100+",
               "bad": 102,
-              "goodRate": 0.951
+              "badText": "102",
+              "goodRate": 0.951,
+              "goodRateText": "95.1%"
             },
             {
               "date": "2026-08-17",
-              "reviews": "2100+",
+              "reviews": 2100,
+              "reviewsText": "2100+",
               "bad": 105,
-              "goodRate": 0.952
+              "badText": "105",
+              "goodRate": 0.9520000000000001,
+              "goodRateText": "95.2%"
             },
             {
               "date": "2026-08-18",
-              "reviews": "2200+",
+              "reviews": 2200,
+              "reviewsText": "2200+",
               "bad": 105,
-              "goodRate": 0.952
+              "badText": "105",
+              "goodRate": 0.9520000000000001,
+              "goodRateText": "95.2%"
             },
             {
               "date": "2026-08-19",
-              "reviews": "2200+",
+              "reviews": 2200,
+              "reviewsText": "2200+",
               "bad": 105,
-              "goodRate": 0.952
+              "badText": "105",
+              "goodRate": 0.9520000000000001,
+              "goodRateText": "95.2%"
             },
             {
               "date": "2026-08-21",
-              "reviews": "2200+",
+              "reviews": 2200,
+              "reviewsText": "2200+",
               "bad": 105,
-              "goodRate": 0.953
+              "badText": "105",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-24",
-              "reviews": "2300+",
+              "reviews": 2300,
+              "reviewsText": "2300+",
               "bad": 109,
-              "goodRate": 0.953
+              "badText": "109",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-25",
-              "reviews": "2300+",
+              "reviews": 2300,
+              "reviewsText": "2300+",
               "bad": 110,
-              "goodRate": 0.953
+              "badText": "110",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-26",
-              "reviews": "2300+",
+              "reviews": 2300,
+              "reviewsText": "2300+",
               "bad": 111,
-              "goodRate": 0.953
+              "badText": "111",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             },
             {
               "date": "2026-08-27",
-              "reviews": "2300+",
+              "reviews": 2300,
+              "reviewsText": "2300+",
               "bad": 111,
-              "goodRate": 0.953
+              "badText": "111",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             }
           ],
           "reviews": [
@@ -1125,13 +1224,13 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-23",
-              "city": "99",
+              "city": "-",
               "user": "别*它的",
               "content": "买一送一有什么用？特别小一瓶不如大的划算 太难吃了"
             },
             {
               "date": "2026-08-22",
-              "city": "99",
+              "city": "-",
               "user": "尹**3％",
               "content": "太难吃了 难吃死了，可能我吃不惯千噎，并且没啥味道"
             },
@@ -1161,7 +1260,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-16",
-              "city": "99",
+              "city": "-",
               "user": "y**1",
               "content": "非常非常小的一瓶 好难吃，除了苦就是酸，怕不是坏了吧，这好评都刷"
             },
@@ -1197,7 +1296,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-10",
-              "city": "99",
+              "city": "-",
               "user": "凶 1**3",
               "content": "难喝死了 写了买一赠一 拿到只有一盒没有赠品"
             },
@@ -1828,13 +1927,13 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-05-14",
               "city": "深圳",
-              "user": "99",
+              "user": "-",
               "content": "大难吃了不是一般难吃！商家自己吃不吃？！"
             },
             {
               "date": "2026-05-14",
               "city": "上海",
-              "user": "99",
+              "user": "-",
               "content": "大难吃了不是一般难吃！商家自己吃不吃？！"
             },
             {
@@ -1870,7 +1969,7 @@ window.__DASHBOARD_DATA__ = {
             {
               "date": "2026-04-30",
               "city": "成都",
-              "user": "99",
+              "user": "-",
               "content": "有一杯没盖子 没有人能够想象这是一个什么味道。配料表很干净， 除了生牛乳就是各种益生菌"
             },
             {
@@ -2016,69 +2115,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 3,
-              "goodRate": 0.973
+              "badText": "3",
+              "goodRate": 0.973,
+              "goodRateText": "97.3%"
             },
             {
               "date": "2026-08-13",
               "reviews": 43,
+              "reviewsText": "43",
               "bad": 3,
-              "goodRate": 0.931
+              "badText": "3",
+              "goodRate": 0.9309999999999999,
+              "goodRateText": "93.1%"
             },
             {
               "date": "2026-08-14",
               "reviews": 51,
+              "reviewsText": "51",
               "bad": 3,
-              "goodRate": 0.944
+              "badText": "3",
+              "goodRate": 0.9440000000000001,
+              "goodRateText": "94.4%"
             },
             {
               "date": "2026-08-17",
               "reviews": 51,
+              "reviewsText": "51",
               "bad": 3,
-              "goodRate": 0.964
+              "badText": "3",
+              "goodRate": 0.9640000000000001,
+              "goodRateText": "96.4%"
             },
             {
               "date": "2026-08-18",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 3,
-              "goodRate": 0.969
+              "badText": "3",
+              "goodRate": 0.9690000000000001,
+              "goodRateText": "96.9%"
             },
             {
               "date": "2026-08-19",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 3,
-              "goodRate": 0.97
+              "badText": "3",
+              "goodRate": 0.97,
+              "goodRateText": "97%"
             },
             {
               "date": "2026-08-21",
-              "reviews": "50+",
+              "reviews": 50,
+              "reviewsText": "50+",
               "bad": 3,
-              "goodRate": 0.976
+              "badText": "3",
+              "goodRate": 0.976,
+              "goodRateText": "97.6%"
             },
             {
               "date": "2026-08-24",
-              "reviews": "100+",
+              "reviews": 100,
+              "reviewsText": "100+",
               "bad": 5,
-              "goodRate": 0.962
+              "badText": "5",
+              "goodRate": 0.9620000000000001,
+              "goodRateText": "96.2%"
             },
             {
               "date": "2026-08-25",
-              "reviews": "110+",
+              "reviews": 110,
+              "reviewsText": "110+",
               "bad": 5,
-              "goodRate": 0.964
+              "badText": "5",
+              "goodRate": 0.9640000000000001,
+              "goodRateText": "96.4%"
             },
             {
               "date": "2026-08-26",
-              "reviews": "120+",
+              "reviews": 120,
+              "reviewsText": "120+",
               "bad": 5,
-              "goodRate": 0.967
+              "badText": "5",
+              "goodRate": 0.9670000000000001,
+              "goodRateText": "96.7%"
             },
             {
               "date": "2026-08-27",
-              "reviews": "130+",
+              "reviews": 130,
+              "reviewsText": "130+",
               "bad": 7,
-              "goodRate": 0.953
+              "badText": "7",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
@@ -2096,7 +2228,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-23",
-              "city": "99",
+              "city": "-",
               "user": "小**淦",
               "content": "酸奶的口感不好，绵扯扯的，不好吃。"
             },
@@ -2114,7 +2246,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-10",
-              "city": "99",
+              "city": "-",
               "user": "M 1**3",
               "content": "乐纯酸奶，简直了，太难喝了 难吃，以为是纯酸奶，结果是甜的很干很干的那种，"
             },
@@ -2188,69 +2320,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 3,
-              "goodRate": 0.926
+              "badText": "3",
+              "goodRate": 0.9259999999999999,
+              "goodRateText": "92.6%"
             },
             {
               "date": "2026-08-13",
               "reviews": 891,
+              "reviewsText": "891",
               "bad": 3,
-              "goodRate": "未展示"
+              "badText": "3",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-14",
               "reviews": 908,
+              "reviewsText": "908",
               "bad": 3,
-              "goodRate": "未展示"
+              "badText": "3",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-17",
               "reviews": 976,
+              "reviewsText": "976",
               "bad": 3,
-              "goodRate": 0.9249
+              "badText": "3",
+              "goodRate": 0.9248999999999999,
+              "goodRateText": "92.49%"
             },
             {
               "date": "2026-08-18",
               "reviews": 987,
+              "reviewsText": "987",
               "bad": 3,
-              "goodRate": 0.9265
+              "badText": "3",
+              "goodRate": 0.9265000000000001,
+              "goodRateText": "92.65%"
             },
             {
               "date": "2026-08-19",
               "reviews": 996,
+              "reviewsText": "996",
               "bad": 3,
-              "goodRate": 0.9264
+              "badText": "3",
+              "goodRate": 0.9264,
+              "goodRateText": "92.64%"
             },
             {
               "date": "2026-08-21",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 3,
-              "goodRate": 0.9262
+              "badText": "3",
+              "goodRate": 0.9262,
+              "goodRateText": "92.62%"
             },
             {
               "date": "2026-08-24",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 4,
-              "goodRate": 0.9269
+              "badText": "4",
+              "goodRate": 0.9269,
+              "goodRateText": "92.69%"
             },
             {
               "date": "2026-08-25",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 4,
-              "goodRate": 0.9274
+              "badText": "4",
+              "goodRate": 0.9274,
+              "goodRateText": "92.74%"
             },
             {
               "date": "2026-08-26",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 4,
-              "goodRate": 0.9283
+              "badText": "4",
+              "goodRate": 0.9283,
+              "goodRateText": "92.83%"
             },
             {
               "date": "2026-08-27",
-              "reviews": "1000+",
+              "reviews": 1000,
+              "reviewsText": "1000+",
               "bad": 4,
-              "goodRate": 0.9286
+              "badText": "4",
+              "goodRate": 0.9286,
+              "goodRateText": "92.86%"
             }
           ],
           "reviews": [
@@ -2280,69 +2445,102 @@ window.__DASHBOARD_DATA__ = {
           "daily": [
             {
               "date": "2026-08-02",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-13",
-              "reviews": "3000+",
-              "bad": "为展示",
-              "goodRate": "未展示"
+              "reviews": 3000,
+              "reviewsText": "3000+",
+              "bad": null,
+              "badText": "为展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-14",
-              "reviews": "3000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 3000,
+              "reviewsText": "3000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-17",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-18",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-19",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-21",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-24",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-25",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-26",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             },
             {
               "date": "2026-08-27",
-              "reviews": "4000+",
-              "bad": "未展示",
-              "goodRate": "未展示"
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
             }
           ],
           "reviews": [],
