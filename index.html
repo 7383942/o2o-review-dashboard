@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>O2O 商品评价看板</title>
-  <!-- rebuilt 2026-08-27 -->
   <style>
     :root{
       --bg:#0b1020;
@@ -545,8 +544,9 @@
       return null;
     };
     const formatDelta = (current, previous, digits = 0, unit = "") => {
-      if (current == null || previous == null) return "较昨日 -";
+      if (current == null || previous == null) return "较昨日-";
       const diff = current - previous;
+      if (diff === 0) return "较昨日-";
       const sign = diff > 0 ? "+" : "";
       return `较昨日 ${sign}${Number(diff).toFixed(digits)}${unit}`;
     };
