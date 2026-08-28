@@ -339,22 +339,25 @@
       background:linear-gradient(90deg, var(--bad), var(--warn));
     }
     .hotwords{
-      display:flex;
+      position:relative;
       flex:1;
-      gap:8px;
-      flex-wrap:wrap;
-      align-content:flex-start;
-      align-items:flex-start;
+      min-height:250px;
       margin-top:12px;
-      padding:8px 2px 0;
+      padding:6px 4px 2px;
+      overflow:hidden;
     }
     .tag{
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.08);
-      font-size:12px;
-      color:#fff;
+      position:absolute;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:-.02em;
+      text-shadow:0 1px 0 rgba(0,0,0,.18);
+      user-select:none;
+      transform:translate(-50%,-50%);
     }
     .table-wrap{
       overflow:auto;
@@ -566,6 +569,36 @@
       const sign = truncated > 0 ? "+" : "";
       return `较昨日 ${sign}${truncated.toFixed(digits)}${unit}`;
     };
+    const cloudPalette = [
+      "rgba(255,255,255,.96)",
+      "rgba(116,168,255,.96)",
+      "rgba(78,227,160,.94)",
+      "rgba(255,205,98,.94)",
+      "rgba(156,123,255,.94)"
+    ];
+    const cloudMeasureCanvas = document.createElement("canvas");
+    const cloudMeasureCtx = cloudMeasureCanvas.getContext("2d");
+    const cloudFontFamily = '"PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei",sans-serif';
+    const cloudCollision = (a, b) => !(
+      a.right < b.left ||
+      a.left > b.right ||
+      a.bottom < b.top ||
+      a.top > b.bottom
+    );
+    const cloudMeasure = (text, size) => {
+      cloudMeasureCtx.font = `700 ${size}px ${cloudFontFamily}`;
+      const metrics = cloudMeasureCtx.measureText(text);
+      return {
+        width: Math.ceil(metrics.width + size * 0.56),
+        height: Math.ceil(size * 1.32)
+      };
+    };
+    const cloudFits = (rect, width, height, margin) => (
+      rect.left >= margin &&
+      rect.top >= margin &&
+      rect.right <= width - margin &&
+      rect.bottom <= height - margin
+    );
     const makeSku = (skuName, overrides = {}) => ({
       skuName,
       updatedAt: "2026-08-26 10:18",
@@ -819,15 +852,96 @@
         container.innerHTML = `<div class="muted">暂无关键词</div>`;
         return;
       }
-      const max = Math.max(...hotwords.map((word) => typeof word === "string" ? 1 : (word.count ?? 1)), 1);
-      container.innerHTML = hotwords.map((word, index) => {
-        const text = typeof word === "string" ? word : word.word;
-        const count = typeof word === "string" ? 1 : (word.count ?? 1);
-        const size = 13 + Math.round((count / max) * 13);
-        const dx = (index % 3) * 6;
-        const dy = (index % 4) * 8;
-        return `<span class="tag" style="font-size:${size}px; transform:translate(${dx}px, ${dy}px)">${text}</span>`;
-      }).join("");
+      const words = hotwords
+        .map((word, index) => ({
+          text: typeof word === "string" ? word : word.word,
+          count: typeof word === "string" ? 1 : (word.count ?? 1),
+          index
+        }))
+        .filter((item) => item.text);
+      const max = Math.max(...words.map((item) => item.count), 1);
+      const min = Math.min(...words.map((item) => item.count), max);
+      const width = Math.max(container.clientWidth || 0, 260);
+      const height = Math.max(container.clientHeight || 0, 250);
+      const margin = 10;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const placed = [];
+      const golden = Math.PI * (3 - Math.sqrt(5));
+
+      const cloudNodes = words
+        .sort((a, b) => b.count - a.count || b.text.length - a.text.length)
+        .map((item, rank) => {
+          const ratio = max === min ? 1 : (item.count - min) / (max - min);
+          const size = 16 + Math.round(Math.pow(ratio, 0.85) * 18);
+          const { width: wordW, height: wordH } = cloudMeasure(item.text, size);
+          const baseAngle = rank * golden;
+          const radialStep = 3.8;
+          let found = null;
+
+          if (rank === 0) {
+            found = {
+              x: centerX,
+              y: centerY,
+              left: centerX - wordW / 2,
+              top: centerY - wordH / 2,
+              right: centerX + wordW / 2,
+              bottom: centerY + wordH / 2
+            };
+          } else {
+            for (let t = 0; t < 1600 && !found; t += 1) {
+              const angle = baseAngle + t * 0.18;
+              const radius = radialStep * t;
+              const x = centerX + Math.cos(angle) * radius;
+              const y = centerY + Math.sin(angle) * radius;
+              const rect = {
+                x,
+                y,
+                left: x - wordW / 2,
+                top: y - wordH / 2,
+                right: x + wordW / 2,
+                bottom: y + wordH / 2
+              };
+              if (!cloudFits(rect, width, height, margin)) continue;
+              if (placed.some((other) => cloudCollision(rect, other))) continue;
+              found = rect;
+            }
+          }
+
+          if (!found) {
+            const sweepY = margin + ((rank * 29) % Math.max(height - margin * 2, 1));
+            const sweepX = margin + ((rank * 41) % Math.max(width - margin * 2, 1));
+            found = {
+              x: Math.min(width - margin, Math.max(margin, sweepX)),
+              y: Math.min(height - margin, Math.max(margin, sweepY)),
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0
+            };
+            found.left = found.x - wordW / 2;
+            found.top = found.y - wordH / 2;
+            found.right = found.x + wordW / 2;
+            found.bottom = found.y + wordH / 2;
+          }
+
+          placed.push(found);
+          return `
+            <span
+              class="tag"
+              title="${item.text}：${item.count}"
+              style="
+                left:${found.x}px;
+                top:${found.y}px;
+                font-size:${size}px;
+                color:${cloudPalette[rank % cloudPalette.length]};
+                opacity:${Math.max(0.7, 1 - rank * 0.035)};
+              "
+            >${item.text}</span>
+          `;
+        });
+
+      container.innerHTML = cloudNodes.join("");
     }
 
     function renderReviews(container, reviews) {
@@ -900,6 +1014,14 @@
       $("updatedAt").textContent = latestUpdated(data.platforms);
       $("refreshText").textContent = window.__DASHBOARD_DATA__ ? "数据状态：已接入外部数据" : "数据状态：样例数据";
     }
+
+    let resizeRaf = 0;
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        data.platforms.forEach((platform) => renderSection(platform.name));
+      });
+    });
 
     renderAll();
   </script>
