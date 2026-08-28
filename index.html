@@ -359,6 +359,29 @@
       user-select:none;
       transform:translate(-50%,-50%);
     }
+    .word-tip{
+      position:absolute;
+      z-index:2;
+      left:0;
+      top:0;
+      padding:6px 9px;
+      border-radius:999px;
+      background:rgba(4,10,22,.92);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size:12px;
+      line-height:1;
+      white-space:nowrap;
+      pointer-events:none;
+      opacity:0;
+      transform:translate(-50%,-120%) scale(.98);
+      transition:opacity .12s ease, transform .12s ease;
+      box-shadow:0 10px 24px rgba(0,0,0,.28);
+    }
+    .word-tip.show{
+      opacity:1;
+      transform:translate(-50%,-120%) scale(1);
+    }
     .table-wrap{
       overflow:auto;
       border-radius:20px;
@@ -930,6 +953,7 @@
             <span
               class="tag"
               title="${item.text}：${item.count}"
+              data-count="${item.count}"
               style="
                 left:${found.x}px;
                 top:${found.y}px;
@@ -941,7 +965,36 @@
           `;
         });
 
-      container.innerHTML = cloudNodes.join("");
+      container.innerHTML = `${cloudNodes.join("")}<div class="word-tip" aria-hidden="true"></div>`;
+      const tip = container.querySelector(".word-tip");
+      const showTip = (target, clientX) => {
+        if (!target || !tip) return;
+        const rect = target.getBoundingClientRect();
+        const parentRect = container.getBoundingClientRect();
+        const centerX = rect.left - parentRect.left + rect.width / 2;
+        const aboveY = rect.top - parentRect.top;
+        tip.textContent = `出现频次：${target.dataset.count}`;
+        tip.style.left = `${centerX}px`;
+        tip.style.top = `${Math.max(0, aboveY)}px`;
+        tip.classList.add("show");
+      };
+      const hideTip = () => {
+        if (!tip) return;
+        tip.classList.remove("show");
+      };
+      container.onpointermove = (event) => {
+        const target = event.target.closest?.(".tag");
+        if (!target || !container.contains(target)) {
+          hideTip();
+          return;
+        }
+        showTip(target, event.clientX);
+      };
+      container.onpointerleave = hideTip;
+      container.querySelectorAll(".tag").forEach((tag) => {
+        tag.onmouseenter = () => showTip(tag);
+        tag.onfocus = () => showTip(tag);
+      });
     }
 
     function renderReviews(container, reviews) {
