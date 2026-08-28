@@ -500,7 +500,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20260828-1546"></script>
+  <script src="./data-template.js?v=20260828-1547"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -973,6 +973,15 @@
         };
       });
 
+      const minLeft = Math.min(...placed.map((item) => item.found.left));
+      const maxRight = Math.max(...placed.map((item) => item.found.right));
+      const minTop = Math.min(...placed.map((item) => item.found.top));
+      const maxBottom = Math.max(...placed.map((item) => item.found.bottom));
+      const targetDx = centerX - (minLeft + maxRight) / 2;
+      const targetDy = centerY - (minTop + maxBottom) / 2;
+      const dx = Math.max(margin - minLeft, Math.min(targetDx, width - margin - maxRight));
+      const dy = Math.max(margin - minTop, Math.min(targetDy, height - margin - maxBottom));
+
       const cloudNodes = placed.map((item, rank) => {
           return `
             <span
@@ -980,8 +989,8 @@
               title="${item.text}：${item.count}"
               data-count="${item.count}"
               style="
-                left:${item.found.x}px;
-                top:${item.found.y}px;
+                left:${item.found.x + dx}px;
+                top:${item.found.y + dy}px;
                 font-size:${item.size}px;
                 color:${cloudPalette[rank % cloudPalette.length]};
                 opacity:${Math.max(0.7, 1 - rank * 0.035)};
