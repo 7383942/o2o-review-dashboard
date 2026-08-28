@@ -105,6 +105,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "341",
               "goodRate": 0.9540000000000001,
               "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-08-27",
+              "reviews": 7400,
+              "reviewsText": "7400+",
+              "bad": 341,
+              "badText": "341",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
@@ -1001,6 +1010,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-27",
+              "reviews": 220,
+              "reviewsText": "220+",
+              "bad": 10,
+              "badText": "10",
+              "goodRate": 0.9640000000000001,
+              "goodRateText": "96.4%"
+            },
+            {
+              "date": "2026-08-27",
               "reviews": 200,
               "reviewsText": "200+",
               "bad": 10,
@@ -1184,6 +1202,15 @@ window.__DASHBOARD_DATA__ = {
               "reviewsText": "2300+",
               "bad": 111,
               "badText": "111",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
+            },
+            {
+              "date": "2026-08-27",
+              "reviews": 2400,
+              "reviewsText": "2400+",
+              "bad": 113,
+              "badText": "113",
               "goodRate": 0.953,
               "goodRateText": "95.3%"
             },
@@ -2231,6 +2258,15 @@ window.__DASHBOARD_DATA__ = {
               "date": "2026-08-27",
               "reviews": 130,
               "reviewsText": "130+",
+              "bad": 8,
+              "badText": "8",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-08-27",
+              "reviews": 130,
+              "reviewsText": "130+",
               "bad": 7,
               "badText": "7",
               "goodRate": 0.9540000000000001,
@@ -2238,6 +2274,12 @@ window.__DASHBOARD_DATA__ = {
             }
           ],
           "reviews": [
+            {
+              "date": "2026-08-27",
+              "city": "上海",
+              "user": "老**肠",
+              "content": "超级干，不好吃，写个评提醒自己"
+            },
             {
               "date": "2026-08-27",
               "city": "北京",
@@ -2284,6 +2326,10 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
+              "word": "不好吃",
+              "count": 3
+            },
+            {
               "word": "口感",
               "count": 3
             },
@@ -2294,10 +2340,6 @@ window.__DASHBOARD_DATA__ = {
             {
               "word": "难喝",
               "count": 3
-            },
-            {
-              "word": "不好吃",
-              "count": 2
             },
             {
               "word": "扯扯",
@@ -2419,6 +2461,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "4",
               "goodRate": 0.9283,
               "goodRateText": "92.83%"
+            },
+            {
+              "date": "2026-08-27",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": null,
+              "badText": null,
+              "goodRate": 0.9294,
+              "goodRateText": "92.94%"
             },
             {
               "date": "2026-08-27",
@@ -2564,6 +2615,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-26",
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-08-27",
               "reviews": 4000,
               "reviewsText": "4000+",
               "bad": null,
