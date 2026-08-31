@@ -340,9 +340,7 @@
     }
     .hotwords{
       position:relative;
-      flex:1;
       min-height:250px;
-      margin-top:12px;
       padding:6px 4px 2px;
       overflow:hidden;
     }
@@ -442,6 +440,14 @@
       flex-direction:column;
       height:100%;
     }
+    .mini .panel-header{
+      flex:0 0 auto;
+    }
+    .mini .hotwords{
+      flex:1;
+      min-height:0;
+      margin-top:12px;
+    }
     .kv{
       display:grid;
       gap:12px;
@@ -500,7 +506,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20260828-1547"></script>
+  <script src="./data-template.js?v=20260831-1600"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
