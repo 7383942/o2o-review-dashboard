@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -112,6 +112,15 @@ window.__DASHBOARD_DATA__ = {
               "reviewsText": "7400+",
               "bad": 341,
               "badText": "341",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-08-31",
+              "reviews": 7600,
+              "reviewsText": "7600+",
+              "bad": 345,
+              "badText": "345",
               "goodRate": 0.9540000000000001,
               "goodRateText": "95.4%"
             }
@@ -916,7 +925,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1025,9 +1034,24 @@ window.__DASHBOARD_DATA__ = {
               "badText": "10",
               "goodRate": 0.9640000000000001,
               "goodRateText": "96.4%"
+            },
+            {
+              "date": "2026-08-31",
+              "reviews": 260,
+              "reviewsText": "260+",
+              "bad": 12,
+              "badText": "12",
+              "goodRate": 0.9620000000000001,
+              "goodRateText": "96.2%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-08-30",
+              "city": "惠州",
+              "user": "f**r",
+              "content": "口感/口味不佳过度包装，变相收费，又重，丢垃圾还一大堆，差评"
+            },
             {
               "date": "2026-08-26",
               "city": "深圳",
@@ -1074,6 +1098,10 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
+              "word": "口感",
+              "count": 3
+            },
+            {
               "word": "临期",
               "count": 3
             },
@@ -1086,11 +1114,11 @@ window.__DASHBOARD_DATA__ = {
               "count": 3
             },
             {
-              "word": "口感",
-              "count": 2
+              "word": "商品变形",
+              "count": 1
             },
             {
-              "word": "商品变形",
+              "word": "口味",
               "count": 1
             },
             {
@@ -1113,7 +1141,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1222,6 +1250,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "113",
               "goodRate": 0.953,
               "goodRateText": "95.3%"
+            },
+            {
+              "date": "2026-08-31",
+              "reviews": 2400,
+              "reviewsText": "2400+",
+              "bad": 113,
+              "badText": "113",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
@@ -2162,7 +2199,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2271,9 +2308,30 @@ window.__DASHBOARD_DATA__ = {
               "badText": "8",
               "goodRate": 0.956,
               "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-08-31",
+              "reviews": 150,
+              "reviewsText": "150+",
+              "bad": 10,
+              "badText": "10",
+              "goodRate": 0.9490000000000001,
+              "goodRateText": "94.9%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-08-31",
+              "city": "成都",
+              "user": "朴**人",
+              "content": "口感/口味不佳"
+            },
+            {
+              "date": "2026-08-28",
+              "city": "宁波",
+              "user": "b**大",
+              "content": "口感/口味不佳难吃的要死 这是酸奶吗?跟吃冻馒头一样的口感"
+            },
             {
               "date": "2026-08-27",
               "city": "上海",
@@ -2326,20 +2384,24 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "不好吃",
-              "count": 3
-            },
-            {
               "word": "口感",
-              "count": 3
+              "count": 5
             },
             {
               "word": "难吃",
+              "count": 4
+            },
+            {
+              "word": "不好吃",
               "count": 3
             },
             {
               "word": "难喝",
               "count": 3
+            },
+            {
+              "word": "口味",
+              "count": 2
             },
             {
               "word": "扯扯",
@@ -2370,7 +2432,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2479,6 +2541,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": null,
               "goodRate": 0.9294,
               "goodRateText": "92.94%"
+            },
+            {
+              "date": "2026-08-31",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": null,
+              "badText": null,
+              "goodRate": 0.9281999999999999,
+              "goodRateText": "92.82%"
             }
           ],
           "reviews": [
@@ -2530,7 +2601,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-08-28",
+          "updatedAt": "2026-08-31",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2633,6 +2704,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-28",
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-08-31",
               "reviews": 4000,
               "reviewsText": "4000+",
               "bad": null,
