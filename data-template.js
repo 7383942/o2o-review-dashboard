@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -123,9 +123,48 @@ window.__DASHBOARD_DATA__ = {
               "badText": "345",
               "goodRate": 0.9540000000000001,
               "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-09-01",
+              "reviews": 7600,
+              "reviewsText": "7600+",
+              "bad": 347,
+              "badText": "347",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-09-01",
+              "city": "上海",
+              "user": "p**0",
+              "content": "口感/口味不佳"
+            },
+            {
+              "date": "2026-08-29",
+              "city": "深圳",
+              "user": "野**5",
+              "content": "8.17号下单的，给我发8.21号到期的，我买了9罐！是觉得我3天内可以吃完吗？？？保质期一个月的东西为什么要发临期产品！！"
+            },
+            {
+              "date": "2026-08-29",
+              "city": "廊坊",
+              "user": "p**6",
+              "content": "不好吃"
+            },
+            {
+              "date": "2026-08-28",
+              "city": "长沙",
+              "user": "剁**子",
+              "content": "这个口感不行"
+            },
+            {
+              "date": "2026-08-28",
+              "city": "北京",
+              "user": "P**9",
+              "content": "总是把直接吃的食物和生肉类放一个袋子里，能不能分开装啊，差评"
+            },
             {
               "date": "2026-06-21",
               "city": "西安",
@@ -879,15 +918,19 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "口感",
-              "count": 33
+              "count": 35
             },
             {
               "word": "不好吃",
-              "count": 22
+              "count": 23
             },
             {
               "word": "味道",
               "count": 19
+            },
+            {
+              "word": "口味",
+              "count": 10
             },
             {
               "word": "好难吃",
@@ -899,10 +942,6 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "难喝",
-              "count": 9
-            },
-            {
-              "word": "口味",
               "count": 9
             },
             {
@@ -925,7 +964,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1043,6 +1082,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "12",
               "goodRate": 0.9620000000000001,
               "goodRateText": "96.2%"
+            },
+            {
+              "date": "2026-09-01",
+              "reviews": 280,
+              "reviewsText": "280+",
+              "bad": 12,
+              "badText": "12",
+              "goodRate": 0.965,
+              "goodRateText": "96.5%"
             }
           ],
           "reviews": [
@@ -1141,7 +1189,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1259,9 +1307,30 @@ window.__DASHBOARD_DATA__ = {
               "badText": "113",
               "goodRate": 0.9540000000000001,
               "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-09-01",
+              "reviews": 2400,
+              "reviewsText": "2400+",
+              "bad": 115,
+              "badText": "115",
+              "goodRate": 0.953,
+              "goodRateText": "95.3%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-08-31",
+              "city": "-",
+              "user": "T**6",
+              "content": "超级无敌难吃啊，一口下去和吃石膏没什么区别，而且也没有奶味，巨难吃，是世界上最难吃的东西"
+            },
+            {
+              "date": "2026-08-31",
+              "city": "-",
+              "user": "I**8",
+              "content": "口感/口味不佳"
+            },
             {
               "date": "2026-08-25",
               "city": "南昌",
@@ -2149,19 +2218,19 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 57
+              "count": 58
             },
             {
               "word": "不好吃",
               "count": 23
             },
             {
-              "word": "盖子",
+              "word": "口感",
               "count": 22
             },
             {
-              "word": "口感",
-              "count": 21
+              "word": "盖子",
+              "count": 22
             },
             {
               "word": "味道",
@@ -2176,12 +2245,12 @@ window.__DASHBOARD_DATA__ = {
               "count": 12
             },
             {
-              "word": "保温",
+              "word": "口味",
               "count": 9
             },
             {
-              "word": "口味",
-              "count": 8
+              "word": "保温",
+              "count": 9
             },
             {
               "word": "酸味",
@@ -2199,7 +2268,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2317,9 +2386,24 @@ window.__DASHBOARD_DATA__ = {
               "badText": "10",
               "goodRate": 0.9490000000000001,
               "goodRateText": "94.9%"
+            },
+            {
+              "date": "2026-09-01",
+              "reviews": 160,
+              "reviewsText": "160+",
+              "bad": 11,
+              "badText": "11",
+              "goodRate": 0.946,
+              "goodRateText": "94.6%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-09-01",
+              "city": "东莞",
+              "user": "T",
+              "content": "难吃"
+            },
             {
               "date": "2026-08-31",
               "city": "成都",
@@ -2384,12 +2468,12 @@ window.__DASHBOARD_DATA__ = {
           "topics": [],
           "hotwords": [
             {
-              "word": "口感",
+              "word": "难吃",
               "count": 5
             },
             {
-              "word": "难吃",
-              "count": 4
+              "word": "口感",
+              "count": 5
             },
             {
               "word": "不好吃",
@@ -2432,7 +2516,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2550,6 +2634,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": null,
               "goodRate": 0.9281999999999999,
               "goodRateText": "92.82%"
+            },
+            {
+              "date": "2026-09-01",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": null,
+              "badText": null,
+              "goodRate": 0.9285,
+              "goodRateText": "92.85%"
             }
           ],
           "reviews": [
@@ -2601,7 +2694,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-08-31",
+          "updatedAt": "2026-09-01",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2713,6 +2806,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-08-31",
+              "reviews": 4000,
+              "reviewsText": "4000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-09-01",
               "reviews": 4000,
               "reviewsText": "4000+",
               "bad": null,
