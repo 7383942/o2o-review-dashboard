@@ -506,7 +506,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20260902-1321"></script>
+  <script src="./data-template.js?v=20260908-01"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -593,7 +593,9 @@
       if (current == null || previous == null) return "较昨日-";
       const diff = (current - previous) * scale;
       const factor = 10 ** digits;
-      const truncated = Math.trunc(diff * factor) / factor;
+      // 保留“截断不四舍五入”，同时加一点容差避免浮点误差把 0.03 截成 0.02。
+      const adjusted = diff * factor + (diff >= 0 ? 1e-9 : -1e-9);
+      const truncated = Math.trunc(adjusted) / factor;
       if (truncated === 0) return "较昨日-";
       const sign = truncated > 0 ? "+" : "";
       return `较昨日 ${sign}${truncated.toFixed(digits)}${unit}`;
