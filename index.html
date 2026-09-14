@@ -289,6 +289,27 @@
       color:var(--muted);
       font-size:13px;
     }
+    .review-search{
+      min-width:min(320px, 100%);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+    }
+    .review-search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:var(--text);
+      font-size:14px;
+    }
+    .review-search input::placeholder{
+      color:var(--muted);
+    }
     .chart-wrap{
       height:340px;
     }
@@ -523,7 +544,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20260914-04"></script>
+  <script src="./data-template.js?v=20260914-05"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -801,8 +822,11 @@
                 <div class="panel-header">
                   <div>
                     <h3 class="panel-title">差评内容明细</h3>
-                    <div class="panel-desc">该 SKU 的差评文本明细。</div>
+                    <div class="panel-desc" id="review-count-${slug(platform.name)}">该 SKU 的差评文本明细。</div>
                   </div>
+                  <label class="review-search">
+                    <input id="review-search-${slug(platform.name)}" type="search" placeholder="搜索难吃、口感、用户名..." autocomplete="off" />
+                  </label>
                 </div>
                 <div class="table-wrap">
                   <table>
@@ -1057,15 +1081,63 @@
       });
     }
 
+    const searchQueries = Object.fromEntries(data.platforms.map((platform) => [platform.name, ""]));
+
     function reviewLabel(review) {
       const text = String(review.tag ?? review.category ?? "").trim();
       if (!text || text === "-") return `<span class="review-label empty">-</span>`;
       return `<span class="review-label">${text}</span>`;
     }
 
-    function renderReviews(container, reviews) {
-      container.innerHTML = reviews.length
-        ? reviews
+    function normalizeSearchText(value) {
+      return String(value ?? "")
+        .toLowerCase()
+        .replace(/[\s,，、;；|/]+/g, " ")
+        .trim();
+    }
+
+    function reviewSearchHaystack(review) {
+      return normalizeSearchText([
+        review.date,
+        shortDate(review.date),
+        review.city,
+        review.user,
+        review.tag,
+        review.category,
+        review.content
+      ].join(" "));
+    }
+
+    function reviewMatchesQuery(review, query) {
+      const tokens = normalizeSearchText(query).split(" ").filter(Boolean);
+      if (!tokens.length) return true;
+      const haystack = reviewSearchHaystack(review);
+      return tokens.every((token) => {
+        if (haystack.includes(token)) return true;
+        let from = 0;
+        for (const char of token) {
+          const index = haystack.indexOf(char, from);
+          if (index === -1) return false;
+          from = index + 1;
+        }
+        return true;
+      });
+    }
+
+    function renderReviews(container, reviews, query = "") {
+      const matched = reviews.filter((review) => reviewMatchesQuery(review, query));
+      const count = $(`review-count-${container.id.replace("reviews-", "")}`);
+      if (count) {
+        count.textContent = query.trim()
+          ? `找到 ${matched.length} / ${reviews.length} 条，匹配“${query.trim()}”`
+          : `该 SKU 的差评文本明细，共 ${reviews.length} 条。`;
+      }
+      if (!reviews.length) {
+        container.innerHTML = `<tr><td colspan="5" class="muted">暂无差评明细</td></tr>`;
+        return;
+      }
+      container.innerHTML = matched.length
+        ? matched
             .map(
               (review) => `
                 <tr>
@@ -1078,7 +1150,17 @@
               `
             )
             .join("")
-        : `<tr><td colspan="5" class="muted">暂无差评明细</td></tr>`;
+        : `<tr><td colspan="5" class="muted">没有包含“${query.trim()}”的差评明细</td></tr>`;
+    }
+
+    function bindReviewSearch(platformName) {
+      const input = $(`review-search-${slug(platformName)}`);
+      if (!input) return;
+      input.value = searchQueries[platformName] ?? "";
+      input.oninput = () => {
+        searchQueries[platformName] = input.value;
+        renderReviews($(`reviews-${slug(platformName)}`), getSku(platformName).reviews ?? [], input.value);
+      };
     }
 
     function renderSkuChips(container, platformName, platform) {
@@ -1124,7 +1206,8 @@
       renderMetrics($(`metrics-${key}`), rows);
       renderChart($(`chart-${key}`), rows);
       renderHotwords($(`hotwords-${key}`), sku.hotwords ?? []);
-      renderReviews($(`reviews-${key}`), sku.reviews ?? []);
+      bindReviewSearch(platformName);
+      renderReviews($(`reviews-${key}`), sku.reviews ?? [], searchQueries[platformName] ?? "");
     }
 
     function renderAll() {
