@@ -412,6 +412,23 @@
       white-space:nowrap;
       word-break:keep-all;
     }
+    .review-label{
+      display:inline-flex;
+      align-items:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,107,122,.28);
+      background:rgba(255,107,122,.12);
+      color:#ffd2d7;
+      font-size:12px;
+      line-height:1.3;
+      white-space:nowrap;
+    }
+    .review-label.empty{
+      border-color:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+    }
     .muted{color:var(--muted)}
     .badge{
       display:inline-flex;
@@ -506,7 +523,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20260914-02"></script>
+  <script src="./data-template.js?v=20260914-03"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -794,6 +811,7 @@
                         <th>日期</th>
                         <th>城市</th>
                         <th>用户名</th>
+                        <th>差评标签</th>
                         <th>差评内容</th>
                       </tr>
                     </thead>
@@ -1039,6 +1057,12 @@
       });
     }
 
+    function reviewLabel(review) {
+      const text = String(review.tag ?? review.category ?? "").trim();
+      if (!text || text === "-") return `<span class="review-label empty">-</span>`;
+      return `<span class="review-label">${text}</span>`;
+    }
+
     function renderReviews(container, reviews) {
       container.innerHTML = reviews.length
         ? reviews
@@ -1048,12 +1072,13 @@
                   <td>${shortDate(review.date)}</td>
                   <td>${review.city ?? "-"}</td>
                   <td>${review.user ?? "-"}</td>
+                  <td>${reviewLabel(review)}</td>
                   <td>${review.content}</td>
                 </tr>
               `
             )
             .join("")
-        : `<tr><td colspan="4" class="muted">暂无差评明细</td></tr>`;
+        : `<tr><td colspan="5" class="muted">暂无差评明细</td></tr>`;
     }
 
     function renderSkuChips(container, platformName, platform) {
