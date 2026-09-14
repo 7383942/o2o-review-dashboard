@@ -3222,8 +3222,8 @@
               "date": "2026-09-14",
               "reviews": 1000,
               "reviewsText": "1000+",
-              "bad": null,
-              "badText": null,
+              "bad": 110,
+              "badText": "110",
               "goodRate": 0.9297,
               "goodRateText": "92.97%"
             }
