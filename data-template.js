@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -225,6 +225,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-16",
+              "reviews": 8200,
+              "reviewsText": "8200+",
+              "bad": 374,
+              "badText": "374",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-09-17",
               "reviews": 8200,
               "reviewsText": "8200+",
               "bad": 374,
@@ -1374,7 +1383,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1600,6 +1609,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "26",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-09-17",
+              "reviews": 560,
+              "reviewsText": "560+",
+              "bad": 26,
+              "badText": "26",
+              "goodRate": 0.958,
+              "goodRateText": "95.8%"
             }
           ],
           "reviews": [
@@ -1812,7 +1830,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2032,6 +2050,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-16",
+              "reviews": 2700,
+              "reviewsText": "2700+",
+              "bad": 120,
+              "badText": "120",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-09-17",
               "reviews": 2700,
               "reviewsText": "2700+",
               "bad": 120,
@@ -3202,7 +3229,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -3428,9 +3455,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "17",
               "goodRate": 0.946,
               "goodRateText": "94.6%"
+            },
+            {
+              "date": "2026-09-17",
+              "reviews": 280,
+              "reviewsText": "280+",
+              "bad": 18,
+              "badText": "18",
+              "goodRate": 0.9440000000000001,
+              "goodRateText": "94.4%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-09-16",
+              "city": "-",
+              "user": "f**1",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-09-13",
               "city": "天津",
@@ -3610,7 +3653,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -3836,6 +3879,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "110",
               "goodRate": 0.9299,
               "goodRateText": "92.99%"
+            },
+            {
+              "date": "2026-09-17",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.93,
+              "goodRateText": "93%"
             }
           ],
           "reviews": [
@@ -4669,7 +4721,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-09-16",
+          "updatedAt": "2026-09-17",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4889,6 +4941,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-16",
+              "reviews": 6000,
+              "reviewsText": "6000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-09-17",
               "reviews": 6000,
               "reviewsText": "6000+",
               "bad": null,
