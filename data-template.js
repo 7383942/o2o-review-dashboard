@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -240,9 +240,32 @@ window.__DASHBOARD_DATA__ = {
               "badText": "374",
               "goodRate": 0.9540000000000001,
               "goodRateText": "95.4%"
+            },
+            {
+              "date": "2026-09-18",
+              "reviews": 8300,
+              "reviewsText": "8300+",
+              "bad": 376,
+              "badText": "376",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-09-18",
+              "city": "杭州",
+              "user": "R**2",
+              "tag": "口感/口味不佳",
+              "content": "你家骑手死🐴了"
+            },
+            {
+              "date": "2026-09-17",
+              "city": "西安",
+              "user": "d**布",
+              "tag": "实物与描述不符",
+              "content": "没有勺子啊"
+            },
             {
               "date": "2026-09-15",
               "city": "深圳",
@@ -1383,7 +1406,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -1618,9 +1641,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "26",
               "goodRate": 0.958,
               "goodRateText": "95.8%"
+            },
+            {
+              "date": "2026-09-18",
+              "reviews": 580,
+              "reviewsText": "580+",
+              "bad": 26,
+              "badText": "26",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-09-17",
+              "city": "成都",
+              "user": "i**2",
+              "tag": "口感/口味不佳",
+              "content": "感觉吃的不是酸奶 是带着酸奶味的米糊 口感奇差"
+            },
             {
               "date": "2026-09-15",
               "city": "绍兴",
@@ -1784,7 +1823,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "口感",
-              "count": 7
+              "count": 8
             },
             {
               "word": "临期",
@@ -1830,7 +1869,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -2059,6 +2098,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-17",
+              "reviews": 2700,
+              "reviewsText": "2700+",
+              "bad": 120,
+              "badText": "120",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-09-18",
               "reviews": 2700,
               "reviewsText": "2700+",
               "bad": 120,
@@ -3229,7 +3277,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -3464,6 +3512,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "18",
               "goodRate": 0.9440000000000001,
               "goodRateText": "94.4%"
+            },
+            {
+              "date": "2026-09-18",
+              "reviews": 290,
+              "reviewsText": "290+",
+              "bad": 18,
+              "badText": "18",
+              "goodRate": 0.946,
+              "goodRateText": "94.6%"
             }
           ],
           "reviews": [
@@ -3653,7 +3710,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -3888,6 +3945,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "110",
               "goodRate": 0.93,
               "goodRateText": "93%"
+            },
+            {
+              "date": "2026-09-18",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.9309000000000001,
+              "goodRateText": "93.09%"
             }
           ],
           "reviews": [
@@ -4721,7 +4787,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-09-17",
+          "updatedAt": "2026-09-18",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4950,6 +5016,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-17",
+              "reviews": 6000,
+              "reviewsText": "6000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-09-18",
               "reviews": 6000,
               "reviewsText": "6000+",
               "bad": null,
