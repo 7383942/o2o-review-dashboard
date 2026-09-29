@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -299,6 +299,15 @@ window.__DASHBOARD_DATA__ = {
               "date": "2026-09-28",
               "reviews": 8600,
               "reviewsText": "8600+",
+              "bad": 382,
+              "badText": "382",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-09-29",
+              "reviews": 8700,
+              "reviewsText": "8700+",
               "bad": 382,
               "badText": "382",
               "goodRate": 0.956,
@@ -3525,7 +3534,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -3823,6 +3832,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "34",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-09-29",
+              "reviews": 750,
+              "reviewsText": "750+",
+              "bad": 34,
+              "badText": "34",
+              "goodRate": 0.958,
+              "goodRateText": "95.8%"
             }
           ],
           "reviews": [
@@ -4091,7 +4109,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4383,6 +4401,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-28",
+              "reviews": 2900,
+              "reviewsText": "2900+",
+              "bad": 127,
+              "badText": "127",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-09-29",
               "reviews": 2900,
               "reviewsText": "2900+",
               "bad": 127,
@@ -5609,7 +5636,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -5907,6 +5934,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "22",
               "goodRate": 0.946,
               "goodRateText": "94.6%"
+            },
+            {
+              "date": "2026-09-29",
+              "reviews": 360,
+              "reviewsText": "360+",
+              "bad": 22,
+              "badText": "22",
+              "goodRate": 0.9470000000000001,
+              "goodRateText": "94.7%"
             }
           ],
           "reviews": [
@@ -6124,7 +6160,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -6422,6 +6458,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "110",
               "goodRate": 0.9322,
               "goodRateText": "93.22%"
+            },
+            {
+              "date": "2026-09-29",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.9319,
+              "goodRateText": "93.19%"
             }
           ],
           "reviews": [
@@ -7255,7 +7300,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-09-28",
+          "updatedAt": "2026-09-29",
           "daily": [
             {
               "date": "2026-08-13",
@@ -7547,6 +7592,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-09-28",
+              "reviews": 6000,
+              "reviewsText": "6000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-09-29",
               "reviews": 6000,
               "reviewsText": "6000+",
               "bad": null,
