@@ -5,7 +5,7 @@
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -364,6 +364,15 @@
               "reviewsText": "9200+",
               "bad": 400,
               "badText": "400",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
+            },
+            {
+              "date": "2026-10-14",
+              "reviews": 9200,
+              "reviewsText": "9200+",
+              "bad": 399,
+              "badText": "399",
               "goodRate": 0.956,
               "goodRateText": "95.6%"
             }
@@ -3763,7 +3772,7 @@
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4124,6 +4133,15 @@
               "badText": "41",
               "goodRate": 0.96,
               "goodRateText": "96%"
+            },
+            {
+              "date": "2026-10-14",
+              "reviews": 950,
+              "reviewsText": "950+",
+              "bad": 41,
+              "badText": "41",
+              "goodRate": 0.961,
+              "goodRateText": "96.1%"
             }
           ],
           "reviews": [
@@ -4448,7 +4466,7 @@
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4803,6 +4821,15 @@
             },
             {
               "date": "2026-10-13",
+              "reviews": 3100,
+              "reviewsText": "3100+",
+              "bad": 133,
+              "badText": "133",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-10-14",
               "reviews": 3100,
               "reviewsText": "3100+",
               "bad": 133,
@@ -6078,7 +6105,7 @@
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -6439,9 +6466,25 @@
               "badText": "28",
               "goodRate": 0.9590000000000001,
               "goodRateText": "95.9%"
+            },
+            {
+              "date": "2026-10-14",
+              "reviews": 530,
+              "reviewsText": "530+",
+              "bad": 29,
+              "badText": "29",
+              "goodRate": 0.958,
+              "goodRateText": "95.8%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-13",
+              "city": "杭州",
+              "user": "L**o",
+              "tag": "口感/口味不佳",
+              "content": "酸奶口感绵面的 很不好"
+            },
             {
               "date": "2026-10-12",
               "city": "武汉",
@@ -6647,7 +6690,7 @@
             },
             {
               "word": "口感",
-              "count": 5
+              "count": 6
             },
             {
               "word": "不好吃",
@@ -6698,7 +6741,7 @@
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -7059,6 +7102,15 @@
               "badText": "110",
               "goodRate": 0.9318000000000001,
               "goodRateText": "93.18%"
+            },
+            {
+              "date": "2026-10-14",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.9315000000000001,
+              "goodRateText": "93.15%"
             }
           ],
           "reviews": [
@@ -7892,7 +7944,7 @@
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-10-13",
+          "updatedAt": "2026-10-14",
           "daily": [
             {
               "date": "2026-08-13",
@@ -8247,6 +8299,15 @@
             },
             {
               "date": "2026-10-13",
+              "reviews": 6000,
+              "reviewsText": "6000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-10-14",
               "reviews": 6000,
               "reviewsText": "6000+",
               "bad": null,
