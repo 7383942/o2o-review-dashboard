@@ -506,20 +506,27 @@
     /* 明细表固定列宽：日期/城市/用户名/差评标签/差评内容，标签列宽度固定，内容列占剩余宽度 */
     .detail-table table{
       table-layout:fixed;
+      width:100%;
       min-width:1160px;
     }
     .detail-table col.c-date{width:86px}
     .detail-table col.c-city{width:96px}
     .detail-table col.c-user{width:120px}
     .detail-table col.c-tag{width:190px}
+    /* 再加一层显式宽度，和 colgroup 双保险，长标签不会撑宽列 */
+    .detail-table th:nth-child(1),.detail-table td:nth-child(1){width:86px;max-width:86px}
+    .detail-table th:nth-child(2),.detail-table td:nth-child(2){width:96px;max-width:96px}
+    .detail-table th:nth-child(3),.detail-table td:nth-child(3){width:120px;max-width:120px}
+    .detail-table th:nth-child(4),.detail-table td:nth-child(4){width:190px;max-width:190px}
     .detail-table tbody td{
       overflow:hidden;
       text-overflow:ellipsis;
     }
-    /* 标签列固定宽度后，超长标签用省略号收尾，鼠标悬停用 title 看全文 */
+    /* 标签胶囊最大宽度定死为 158px（190px 列宽减去左右各 16px padding），超长在格内省略 */
     .detail-table td:nth-child(4) .review-label{
       display:inline-block;
-      max-width:100%;
+      width:auto;
+      max-width:158px;
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
@@ -571,7 +578,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261022-02"></script>
+  <script src="./data-template.js?v=20261022-03"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
