@@ -503,6 +503,33 @@
     .detail-table{
       margin-top:16px;
     }
+    /* 明细表固定列宽：日期/城市/用户名/差评标签/差评内容，标签列宽度固定，内容列占剩余宽度 */
+    .detail-table table{
+      table-layout:fixed;
+      min-width:1160px;
+    }
+    .detail-table col.c-date{width:86px}
+    .detail-table col.c-city{width:96px}
+    .detail-table col.c-user{width:120px}
+    .detail-table col.c-tag{width:190px}
+    .detail-table tbody td{
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    /* 标签列固定宽度后，超长标签用省略号收尾，鼠标悬停用 title 看全文 */
+    .detail-table td:nth-child(4) .review-label{
+      display:inline-block;
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      vertical-align:middle;
+    }
+    .detail-table thead th{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
     .table-wrap{
       max-height: 360px;
       overflow:auto;
@@ -544,7 +571,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261022-01"></script>
+  <script src="./data-template.js?v=20261022-02"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -829,7 +856,14 @@
                   </label>
                 </div>
                 <div class="table-wrap">
-                  <table>
+                  <table class="review-table">
+                    <colgroup>
+                      <col class="c-date" />
+                      <col class="c-city" />
+                      <col class="c-user" />
+                      <col class="c-tag" />
+                      <col class="c-content" />
+                    </colgroup>
                     <thead>
                       <tr>
                         <th>日期</th>
@@ -1124,6 +1158,13 @@
       });
     }
 
+    const escapeAttr = (value) =>
+      String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
     function renderReviews(container, reviews, query = "") {
       const matched = reviews.filter((review) => reviewMatchesQuery(review, query));
       const count = $(`review-count-${container.id.replace("reviews-", "")}`);
@@ -1138,17 +1179,19 @@
       }
       container.innerHTML = matched.length
         ? matched
-            .map(
-              (review) => `
+            .map((review) => {
+              const tagText = String(review.tag ?? review.category ?? "").trim() || "-";
+              const contentText = String(review.content ?? "-");
+              return `
                 <tr>
                   <td>${shortDate(review.date)}</td>
                   <td>${review.city ?? "-"}</td>
                   <td>${review.user ?? "-"}</td>
-                  <td>${reviewLabel(review)}</td>
-                  <td>${review.content}</td>
+                  <td title="${escapeAttr(tagText)}">${reviewLabel(review)}</td>
+                  <td title="${escapeAttr(contentText)}">${contentText}</td>
                 </tr>
-              `
-            )
+              `;
+            })
             .join("")
         : `<tr><td colspan="5" class="muted">没有包含“${query.trim()}”的差评明细</td></tr>`;
     }
