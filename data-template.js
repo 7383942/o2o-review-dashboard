@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -420,9 +420,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "406",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 9500,
+              "reviewsText": "9500+",
+              "bad": 408,
+              "badText": "408",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-21",
+              "city": "-",
+              "user": "x**4",
+              "tag": "内部异物，口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-10-20",
               "city": "深圳",
@@ -3866,7 +3882,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4281,6 +4297,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "47",
               "goodRate": 0.9590000000000001,
               "goodRateText": "95.9%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 48,
+              "badText": "48",
+              "goodRate": 0.96,
+              "goodRateText": "96%"
             }
           ],
           "reviews": [
@@ -4654,7 +4679,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -5069,9 +5094,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "140",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 3300,
+              "reviewsText": "3300+",
+              "bad": 141,
+              "badText": "141",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-21",
+              "city": "上海",
+              "user": "汽**修",
+              "tag": "口感/口味不佳",
+              "content": "我滴妈，太难吃了，跟吃粉笔粥一样，要不你陪我点钱吧"
+            },
             {
               "date": "2026-10-21",
               "city": "济南",
@@ -6358,7 +6399,7 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 37
+              "count": 38
             },
             {
               "word": "不好吃",
@@ -6408,7 +6449,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -6823,9 +6864,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "37",
               "goodRate": 0.955,
               "goodRateText": "95.5%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 640,
+              "reviewsText": "640+",
+              "bad": 38,
+              "badText": "38",
+              "goodRate": 0.9540000000000001,
+              "goodRateText": "95.4%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-21",
+              "city": "杭州",
+              "user": "不**葱",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-10-21",
               "city": "深圳",
@@ -7140,7 +7197,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "PB干噎2联",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-10-16",
@@ -7177,9 +7234,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "179",
               "goodRate": 0.951,
               "goodRateText": "95.1%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 3700,
+              "reviewsText": "3700",
+              "bad": 180,
+              "badText": "180",
+              "goodRate": 0.9520000000000001,
+              "goodRateText": "95.2%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-21",
+              "city": "深圳",
+              "user": "i**2",
+              "tag": "口感/口味不佳",
+              "content": "这个酸奶别买，巨难吃"
+            },
             {
               "date": "2026-10-20",
               "city": "无锡",
@@ -8620,7 +8693,7 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 58
+              "count": 59
             },
             {
               "word": "不好吃",
@@ -8670,7 +8743,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "PB干噎单杯",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-10-16",
@@ -8707,9 +8780,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "19",
               "goodRate": 0.95,
               "goodRateText": "95%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 340,
+              "reviewsText": "340+",
+              "bad": 20,
+              "badText": "20",
+              "goodRate": 0.948,
+              "goodRateText": "94.8%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-21",
+              "city": "北京",
+              "user": "z**4",
+              "tag": "口感/口味不佳",
+              "content": "一般，比超市那个无糖的好吃点，但也不好吃，真是干噎"
+            },
             {
               "date": "2026-10-07",
               "city": "-",
@@ -8852,7 +8941,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "不好吃",
-              "count": 3
+              "count": 4
             },
             {
               "word": "味道",
@@ -8883,7 +8972,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -9298,6 +9387,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "110",
               "goodRate": 0.9327,
               "goodRateText": "93.27%"
+            },
+            {
+              "date": "2026-10-22",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.9326000000000001,
+              "goodRateText": "93.26%"
             }
           ],
           "reviews": [
@@ -10131,7 +10229,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-10-21",
+          "updatedAt": "2026-10-22",
           "daily": [
             {
               "date": "2026-08-13",
@@ -10540,6 +10638,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-10-21",
+              "reviews": 6000,
+              "reviewsText": "6000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-10-22",
               "reviews": 6000,
               "reviewsText": "6000+",
               "bad": null,
