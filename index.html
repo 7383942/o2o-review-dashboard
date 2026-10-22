@@ -522,6 +522,27 @@
       overflow:hidden;
       text-overflow:ellipsis;
     }
+    /* 单元格被折叠时，鼠标悬停浮出完整文字的气泡 */
+    .cell-tip{
+      position:fixed;
+      left:0; top:-9999px;
+      z-index:9999;
+      max-width:420px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(10,16,30,.98);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 14px 34px rgba(0,0,0,.5);
+      color:#f2f6ff;
+      font-size:12.5px;
+      line-height:1.65;
+      white-space:normal;
+      word-break:break-word;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .12s ease;
+    }
+    .cell-tip.show{opacity:1}
     /* 标签胶囊最大宽度定死为 158px（190px 列宽减去左右各 16px padding），超长在格内省略 */
     .detail-table td:nth-child(4) .review-label{
       display:inline-block;
@@ -573,12 +594,14 @@
 
     <div id="sections" class="stack"></div>
 
+    <div class="cell-tip" id="cellTip" role="tooltip"></div>
+
     <div class="footer">
       说明：每个平台是独立板块，SKU 下拉只影响本平台的数据展示，不会和其他平台合并计算。
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261022-03"></script>
+  <script src="./data-template.js?v=20261022-04"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -1194,8 +1217,8 @@
                   <td>${shortDate(review.date)}</td>
                   <td>${review.city ?? "-"}</td>
                   <td>${review.user ?? "-"}</td>
-                  <td title="${escapeAttr(tagText)}">${reviewLabel(review)}</td>
-                  <td title="${escapeAttr(contentText)}">${contentText}</td>
+                  <td class="cell-tag" data-full-tag="${escapeAttr(tagText)}">${reviewLabel(review)}</td>
+                  <td class="cell-content" data-full-tag="${escapeAttr(contentText)}">${contentText}</td>
                 </tr>
               `;
             })
@@ -1275,6 +1298,63 @@
         data.platforms.forEach((platform) => renderSection(platform.name));
       });
     });
+
+    // 被折叠的单元格：鼠标悬停时浮出完整文字
+    const cellTip = $("cellTip");
+    let tipCell = null;
+
+    function isTruncated(cell) {
+      if (!cell) return false;
+      const pill = cell.querySelector(".review-label");
+      if (pill) return pill.scrollWidth > pill.clientWidth + 1;
+      return cell.scrollWidth > cell.clientWidth + 1;
+    }
+
+    function placeTip(event) {
+      if (!cellTip || cellTip.hidden) return;
+      const gap = 14;
+      const rect = cellTip.getBoundingClientRect();
+      let x = event.clientX + gap;
+      let y = event.clientY + gap + 6;
+      if (x + rect.width > window.innerWidth - gap) x = Math.max(gap, window.innerWidth - rect.width - gap);
+      if (y + rect.height > window.innerHeight - gap) y = Math.max(gap, event.clientY - rect.height - gap);
+      cellTip.style.left = `${Math.round(x)}px`;
+      cellTip.style.top = `${Math.round(y)}px`;
+    }
+
+    function hideTip() {
+      if (!cellTip) return;
+      cellTip.classList.remove("show");
+      cellTip.hidden = true;
+      cellTip.textContent = "";
+      tipCell = null;
+    }
+
+    document.addEventListener("mouseover", (event) => {
+      const cell = event.target?.closest?.("td[data-full-tag]");
+      if (!cell || !isTruncated(cell)) return;
+      const text = cell.dataset.fullTag || "";
+      if (!text) return;
+      tipCell = cell;
+      cellTip.textContent = text;
+      cellTip.hidden = false;
+      placeTip(event);
+      requestAnimationFrame(() => cellTip.classList.add("show"));
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      if (tipCell && cellTip && !cellTip.hidden) placeTip(event);
+    });
+
+    document.addEventListener("mouseout", (event) => {
+      if (!tipCell) return;
+      const to = event.relatedTarget;
+      if (to instanceof Node && tipCell.contains(to)) return;
+      hideTip();
+    });
+
+    document.addEventListener("scroll", () => { if (tipCell) hideTip(); }, true);
+    window.addEventListener("blur", hideTip);
 
     renderAll();
   </script>
