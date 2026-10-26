@@ -5,7 +5,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊90g3联",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -438,9 +438,39 @@ window.__DASHBOARD_DATA__ = {
               "badText": "411",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 9700,
+              "reviewsText": "9700+",
+              "bad": 414,
+              "badText": "414",
+              "goodRate": 0.9570000000000001,
+              "goodRateText": "95.7%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-26",
+              "city": "西安",
+              "user": "V**7",
+              "tag": "实物与描述不符",
+              "content": "有个酸奶怎么没盖子"
+            },
+            {
+              "date": "2026-10-26",
+              "city": "广州",
+              "user": "滔**0",
+              "tag": "口感/口味不佳",
+              "content": "没喝过这么难吃的酸奶，我滴天"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "佛山",
+              "user": "G**4",
+              "tag": "口感/口味不佳",
+              "content": "买错了 不明白这个酸奶存在的意义是什么 难吃避雷"
+            },
             {
               "date": "2026-10-23",
               "city": "北京",
@@ -3869,7 +3899,7 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 122
+              "count": 124
             },
             {
               "word": "口感",
@@ -3889,7 +3919,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "盖子",
-              "count": 17
+              "count": 18
             },
             {
               "word": "过期",
@@ -3919,7 +3949,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g3联",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -4352,6 +4382,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "48",
               "goodRate": 0.96,
               "goodRateText": "96%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 1100,
+              "reviewsText": "1100+",
+              "bad": 48,
+              "badText": "48",
+              "goodRate": 0.9620000000000001,
+              "goodRateText": "96.2%"
             }
           ],
           "reviews": [
@@ -4725,7 +4764,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "0蔗糖希腊90g单杯",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -5158,9 +5197,67 @@ window.__DASHBOARD_DATA__ = {
               "badText": "144",
               "goodRate": 0.9570000000000001,
               "goodRateText": "95.7%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 3500,
+              "reviewsText": "3500+",
+              "bad": 151,
+              "badText": "151",
+              "goodRate": 0.956,
+              "goodRateText": "95.6%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-26",
+              "city": "湖州",
+              "user": "蓝**n",
+              "tag": "口感/口味不佳",
+              "content": "真是太难吃了"
+            },
+            {
+              "date": "2026-10-25",
+              "city": "-",
+              "user": "L**P",
+              "tag": "口感/口味不佳",
+              "content": "非常难吃，什么味道都没有，超级难吃，避雷"
+            },
+            {
+              "date": "2026-10-25",
+              "city": "北京",
+              "user": "y**5",
+              "tag": "口感/口味不佳",
+              "content": "这个酸奶一点点味道都没有的，而且也不算特别噎就我来讲不喜欢这个味道，难吃"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "北京",
+              "user": "鑫**悦",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "深圳",
+              "user": "S**4",
+              "tag": "口感/口味不佳",
+              "content": "不好吃，一点都不好吃，要不是看有这么多好评根本不会买，浪费我钱"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "-",
+              "user": "柒**柒",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "武汉",
+              "user": "N**2",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-10-23",
               "city": "江门",
@@ -6475,11 +6572,11 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 38
+              "count": 41
             },
             {
               "word": "不好吃",
-              "count": 17
+              "count": 18
             },
             {
               "word": "盖子",
@@ -6487,7 +6584,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "味道",
-              "count": 11
+              "count": 13
             },
             {
               "word": "口感",
@@ -6525,7 +6622,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "原味希腊90g单杯",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -6958,9 +7055,60 @@ window.__DASHBOARD_DATA__ = {
               "badText": "40",
               "goodRate": 0.953,
               "goodRateText": "95.3%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 740,
+              "reviewsText": "740+",
+              "bad": 46,
+              "badText": "46",
+              "goodRate": 0.951,
+              "goodRateText": "95.1%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-26",
+              "city": "沧州",
+              "user": "A**1",
+              "tag": "口感/口味不佳",
+              "content": "最难吃的酸奶没有之一，水泥块般口感粗糙纯酸"
+            },
+            {
+              "date": "2026-10-25",
+              "city": "-",
+              "user": "败**降",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
+            {
+              "date": "2026-10-25",
+              "city": "杭州",
+              "user": "x**y",
+              "tag": "实物与描述不符",
+              "content": "购买的时候显示了买一送一，实际送到只有一份，联系客服说是因为下单时已经没有赠一的赠品，所以只发一个。这和诈骗有什么区别!"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "-",
+              "user": "富**天",
+              "tag": "口感/口味不佳",
+              "content": "老难吃了 不卖了"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "-",
+              "user": "好**拼",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "上海",
+              "user": "今**步",
+              "tag": "胀包/胀袋",
+              "content": "-"
+            },
             {
               "date": "2026-10-22",
               "city": "长沙",
@@ -7246,11 +7394,11 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 11
+              "count": 13
             },
             {
               "word": "口感",
-              "count": 6
+              "count": 7
             },
             {
               "word": "不好吃",
@@ -7296,7 +7444,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "PB干噎2联",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-10-16",
@@ -7351,9 +7499,74 @@ window.__DASHBOARD_DATA__ = {
               "badText": "184",
               "goodRate": 0.951,
               "goodRateText": "95.1%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 3900,
+              "reviewsText": "3900",
+              "bad": 192,
+              "badText": "192",
+              "goodRate": 0.951,
+              "goodRateText": "95.1%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-25",
+              "city": "-",
+              "user": "L**P",
+              "tag": "口感/口味不佳",
+              "content": "非常难吃，不会回购，避雷"
+            },
+            {
+              "date": "2026-10-25",
+              "city": "上海",
+              "user": "黄**鼠",
+              "tag": "口感/口味不佳",
+              "content": "吃着不甜应该是减糖了的，习惯健康的人可以吃。但是挖着吃着那口感无法评价，就像是吃粉笔沫混成泥的口感，再加上少糖，就像在吃湿面粉一样，质地看着挺好，但吃进去不怎么样"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "北京",
+              "user": "e**3",
+              "tag": "口感/口味不佳",
+              "content": "太难吃了，感觉在吃面糊，扔了"
+            },
+            {
+              "date": "2026-10-24",
+              "city": "-",
+              "user": "M**7",
+              "tag": "商品变形/破损/撒漏",
+              "content": "少个盖子，没有勺子了"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "石家庄",
+              "user": "g**4",
+              "tag": "口感/口味不佳",
+              "content": "太难吃了，都是颗粒感，一点都不细腻，颗粒太醋了，"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "常州",
+              "user": "婷**0",
+              "tag": "口感/口味不佳",
+              "content": "难吃的要死，像豆腐渣一样而且一股怪味"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "-",
+              "user": "j**12",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
+            {
+              "date": "2026-10-23",
+              "city": "绍兴",
+              "user": "m**4",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-10-22",
               "city": "-",
@@ -8829,7 +9042,7 @@ window.__DASHBOARD_DATA__ = {
           "hotwords": [
             {
               "word": "难吃",
-              "count": 61
+              "count": 65
             },
             {
               "word": "不好吃",
@@ -8841,7 +9054,7 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "word": "口感",
-              "count": 11
+              "count": 12
             },
             {
               "word": "好难吃",
@@ -8864,11 +9077,11 @@ window.__DASHBOARD_DATA__ = {
               "count": 5
             },
             {
-              "word": "酸味",
-              "count": 3
+              "word": "盖子",
+              "count": 4
             },
             {
-              "word": "盖子",
+              "word": "酸味",
               "count": 3
             },
             {
@@ -8879,7 +9092,7 @@ window.__DASHBOARD_DATA__ = {
         },
         {
           "skuName": "PB干噎单杯",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-10-16",
@@ -8934,9 +9147,25 @@ window.__DASHBOARD_DATA__ = {
               "badText": "20",
               "goodRate": 0.948,
               "goodRateText": "94.8%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 360,
+              "reviewsText": "360+",
+              "bad": 21,
+              "badText": "21",
+              "goodRate": 0.9470000000000001,
+              "goodRateText": "94.7%"
             }
           ],
           "reviews": [
+            {
+              "date": "2026-10-25",
+              "city": "-",
+              "user": "x**2",
+              "tag": "口感/口味不佳",
+              "content": "-"
+            },
             {
               "date": "2026-10-21",
               "city": "北京",
@@ -9117,7 +9346,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "山楂干噎100g",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -9550,6 +9779,15 @@ window.__DASHBOARD_DATA__ = {
               "badText": "110",
               "goodRate": 0.9329999999999999,
               "goodRateText": "93.3%"
+            },
+            {
+              "date": "2026-10-26",
+              "reviews": 1000,
+              "reviewsText": "1000+",
+              "bad": 110,
+              "badText": "110",
+              "goodRate": 0.9338,
+              "goodRateText": "93.38%"
             }
           ],
           "reviews": [
@@ -10383,7 +10621,7 @@ window.__DASHBOARD_DATA__ = {
       "skus": [
         {
           "skuName": "0蔗糖希腊70g3联/单杯",
-          "updatedAt": "2026-10-23",
+          "updatedAt": "2026-10-26",
           "daily": [
             {
               "date": "2026-08-13",
@@ -10810,6 +11048,15 @@ window.__DASHBOARD_DATA__ = {
             },
             {
               "date": "2026-10-23",
+              "reviews": 8000,
+              "reviewsText": "8000+",
+              "bad": null,
+              "badText": "未展示",
+              "goodRate": null,
+              "goodRateText": "未展示"
+            },
+            {
+              "date": "2026-10-26",
               "reviews": 8000,
               "reviewsText": "8000+",
               "bad": null,
