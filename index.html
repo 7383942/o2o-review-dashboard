@@ -374,6 +374,7 @@
       grid-template-columns:1fr 1fr;
       gap:12px;
     }
+    .ana-kpis-single{grid-template-columns:1fr}
     .ana-kpi{
       border:1px solid rgba(255,255,255,.10);
       border-radius:14px;
@@ -651,7 +652,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261106-01"></script>
+  <script src="./data-template.js?v=20261106-02"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -920,7 +921,7 @@
                 <div class="panel-header">
                   <div>
                     <h3 class="panel-title" style="font-size:16px;">评价分析</h3>
-                    <div class="panel-desc">近 7 天差评与好评率变化，按差评标签归类。</div>
+                    <div class="panel-desc">本周新增差评与差评标签分布。</div>
                   </div>
                 </div>
                 <div class="ana" id="ana-${slug(platform.name)}"></div>
@@ -1034,35 +1035,34 @@
       `;
     }
 
-    // 评价分析：近 7 天差评与好评率变化 + 差评标签分布 + 结论
+    // 评价分析：本周（自周一）新增差评 + 差评标签分布 + 结论
     function renderAnalysis(container, daily, reviews) {
       if (!container) return;
       const sorted = [...(Array.isArray(daily) ? daily : [])].sort(
         (a, b) => (toDateValue(a.date) ?? 0) - (toDateValue(b.date) ?? 0)
       );
-      const list = sorted.slice(-14);
-      const today = list.at(-1) ?? null;
-      const weekAgo = list.length >= 8 ? list[list.length - 8] : list[0] ?? null;
-      const prevWeekAgo = sorted.length >= 15 ? sorted[sorted.length - 15] : null;
+      const today = sorted.at(-1) ?? null;
+
+      // 以「本周一」的数据为基准：本周新增差评 = 今日差评数 − 周一差评数
+      const mondayOf = (iso) => {
+        const [y, m, d] = String(iso).split("-").map(Number);
+        if (!y || !m || !d) return null;
+        const base = Date.UTC(y, m - 1, d);
+        const offset = (new Date(base).getUTCDay() + 6) % 7; // 0=周一
+        return new Date(base - offset * 86400000).toISOString().slice(0, 10);
+      };
+      const weekStart = today ? mondayOf(today.date) : null;
+      const baseline = weekStart
+        ? [...sorted].reverse().find((row) => String(row.date) <= weekStart) ?? null
+        : null;
 
       const badNow = today ? currentBadCount(today) : null;
-      const badWeek = weekAgo ? currentBadCount(weekAgo) : null;
-      const badPrevWeek = prevWeekAgo ? currentBadCount(prevWeekAgo) : null;
-      const newBad = badNow != null && badWeek != null ? Math.round(badNow - badWeek) : null;
-      const prevNewBad = badWeek != null && badPrevWeek != null ? Math.round(badWeek - badPrevWeek) : null;
-      const badDelta = newBad != null && prevNewBad != null ? newBad - prevNewBad : null;
+      const badBase = baseline ? currentBadCount(baseline) : null;
+      const newBad = badNow != null && badBase != null ? Math.round(badNow - badBase) : null;
 
-      const rateNow = today ? currentGoodRate(today) : null;
-      const rateWeek = weekAgo ? currentGoodRate(weekAgo) : null;
-      const rateDelta = rateNow != null && rateWeek != null ? (rateNow - rateWeek) * 100 : null;
+      const md = (iso) => (iso ? `${Number(iso.slice(5, 7))}-${iso.slice(8, 10)}` : "-");
 
-      const signed = (v, unit = "", digits = 0) => {
-        const abs = Math.abs(v).toFixed(digits).replace(/\.?0+$/, "");
-        return `${v > 0 ? "+" : v < 0 ? "-" : ""}${abs === "" ? "0" : abs}${unit}`;
-      };
-      const pctText = (v) => (v == null ? "-" : `${(v * 100).toFixed(1).replace(/\.0$/, "")}%`);
-
-      // 差评标签分布（累计）
+      // 差评标签分布
       const tagCount = new Map();
       let tagged = 0;
       for (const review of Array.isArray(reviews) ? reviews : []) {
@@ -1085,15 +1085,9 @@
       }
 
       const kpiBad = newBad == null ? "-" : `${newBad}`;
-      const kpiBadDelta =
-        badDelta == null ? "无可比数据" : badDelta === 0 ? "较前 7 天持平" : `较前 7 天 ${signed(badDelta, " 条")}`;
-      const kpiRate = rateNow == null ? "未展示" : pctText(rateNow);
-      const kpiRateDelta =
-        rateDelta == null
-          ? "无可比数据"
-          : Math.abs(rateDelta) < 0.005
-            ? "较 7 天前持平"
-            : `较 7 天前 ${signed(rateDelta, "%", 2)}`;
+      const kpiBadHint = baseline
+        ? `自 ${md(baseline.date)}（周一）起`
+        : "暂无本周基准数据";
 
       const bars = topTags.length
         ? topTags
@@ -1114,18 +1108,7 @@
       } else {
         const parts = [];
         if (newBad != null) {
-          parts.push(
-            `近 7 天新增差评 ${newBad} 条${badDelta == null ? "" : `（前 7 天 ${newBad - badDelta} 条）`}`
-          );
-        }
-        if (rateNow != null) {
-          const rateWord =
-            rateDelta == null
-              ? ""
-              : Math.abs(rateDelta) < 0.005
-                ? "，较 7 天前持平"
-                : `，较 7 天前 ${signed(rateDelta, " 个百分点", 2)}`;
-          parts.push(`好评率 ${pctText(rateNow)}${rateWord}`);
+          parts.push(`本周新增差评 ${newBad} 条（自 ${md(baseline.date)} 起）`);
         }
         if (topTags.length) {
           const pct = tagged ? Math.round((topTags[0][1] / tagged) * 100) : 0;
@@ -1135,19 +1118,14 @@
       }
 
       container.innerHTML = `
-        <div class="ana-kpis">
+        <div class="ana-kpis ana-kpis-single">
           <div class="ana-kpi">
-            <span class="k">近 7 天新增差评</span>
+            <span class="k">本周新增差评</span>
             <b class="v bad">${kpiBad}</b>
-            <span class="d">${kpiBadDelta}</span>
-          </div>
-          <div class="ana-kpi">
-            <span class="k">好评率</span>
-            <b class="v ${rateDelta != null && rateDelta < 0 ? "bad" : "good"}">${kpiRate}</b>
-            <span class="d">${kpiRateDelta}</span>
+            <span class="d">${kpiBadHint}</span>
           </div>
         </div>
-        <div class="ana-sub"><span>差评标签分布</span><span>累计 ${tagged} 条有标签差评</span></div>
+        <div class="ana-sub"><span>差评标签分布</span></div>
         <div class="ana-bars">${bars}</div>
         <div class="ana-note">${conclusion}</div>
       `;
