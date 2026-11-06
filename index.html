@@ -372,6 +372,17 @@
       gap:12px;
     }
     .ana-kpis-single{grid-template-columns:1fr}
+    /* 只有一个 KPI 时压成横条，降低高度 */
+    .ana-kpis-single .ana-kpi{
+      flex-direction:row;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      padding:9px 14px;
+      border-radius:12px;
+    }
+    .ana-kpis-single .ana-kpi .k{font-size:12.5px}
+    .ana-kpis-single .ana-kpi .v{font-size:21px;line-height:1.15}
     .ana-kpi{
       border:1px solid rgba(255,255,255,.10);
       border-radius:14px;
@@ -649,7 +660,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261106-04"></script>
+  <script src="./data-template.js?v=20261106-05"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -1109,7 +1120,7 @@
       } else {
         const parts = [];
         if (newBad != null) {
-          parts.push(`本周新增差评 ${newBad} 条（自 ${md(baseline.date)} 起）`);
+          parts.push(`本周新增差评 ${newBad} 条`);
         }
         if (topTags.length) {
           const pct = classified ? Math.round((topTags[0][1] / classified) * 100) : 0;
@@ -1123,7 +1134,6 @@
           <div class="ana-kpi">
             <span class="k">本周新增差评</span>
             <b class="v bad">${kpiBad}</b>
-            <span class="d">${kpiBadHint}</span>
           </div>
         </div>
         <div class="ana-sub"><span>关键词分类</span></div>
