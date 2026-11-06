@@ -204,7 +204,7 @@
     }
     .layout{
       grid-template-columns: minmax(0, 1.6fr) minmax(320px, .9fr);
-      align-items:start;
+      align-items:stretch;
     }
     .stack{
       display:flex;
@@ -214,9 +214,15 @@
     .stack > .card{
       flex:1;
     }
-    /* 图表卡片按内容高度收缩，让 X 轴贴住卡片底部，而不是被拉高留白 */
+    /* 图表卡片与右侧分析卡片等高；图表按容器实际尺寸重绘，X 轴自然贴底 */
     .layout > .stack > .card{
-      flex:0 0 auto;
+      display:flex;
+      flex-direction:column;
+    }
+    .layout > .stack > .card .chart-wrap{
+      flex:1 1 auto;
+      height:auto;
+      min-height:260px;
     }
     .row{
       display:grid;
@@ -687,7 +693,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261106-07"></script>
+  <script src="./data-template.js?v=20261106-08"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -999,6 +1005,35 @@
       `;
     }
 
+    // 图表容器尺寸变化时重绘，避免首帧尺寸与实际布局不一致导致拉伸
+    const chartDraws = new Map();
+    const chartObserved = new WeakSet();
+    function observeChartWrap(wrap) {
+      if (chartObserved.has(wrap) || typeof ResizeObserver === "undefined") return;
+      chartObserved.add(wrap);
+      let lastW = 0;
+      let lastH = 0;
+      const ro = new ResizeObserver(() => {
+        const box = wrap.getBoundingClientRect();
+        if (Math.abs(box.width - lastW) < 2 && Math.abs(box.height - lastH) < 2) return;
+        lastW = box.width;
+        lastH = box.height;
+        chartDraws.get(wrap)?.();
+      });
+      ro.observe(wrap);
+    }
+
+    function redrawCharts() {
+      data.platforms.forEach((platform) => {
+        const sku = getSku(platform.name);
+        const rows = [...(sku.daily ?? [])]
+          .sort((a, b) => (toDateValue(a.date) ?? 0) - (toDateValue(b.date) ?? 0))
+          .slice(-14);
+        const svg = $(`chart-${slug(platform.name)}`);
+        if (svg) renderChart(svg, rows);
+      });
+    }
+
     function renderChart(svg, rows) {
       const plotRows = rows.filter((row) => currentGoodRate(row) != null);
       if (!plotRows.length) {
@@ -1007,8 +1042,10 @@
         `;
         return;
       }
-      const w = 940;
-      const h = 340;
+      const box = svg.getBoundingClientRect();
+      const w = Math.max(Math.round(box.width), 320) || 940;
+      const h = Math.max(Math.round(box.height), 220) || 340;
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
       const pad = { top: 24, right: 64, bottom: 42, left: 66 };
       const innerW = w - pad.left - pad.right;
       const innerH = h - pad.top - pad.bottom;
@@ -1298,7 +1335,13 @@
 
       renderSkuChips($(`chips-${key}`), platformName, platform);
       renderMetrics($(`metrics-${key}`), rows);
-      renderChart($(`chart-${key}`), rows);
+      const chartSvg = $(`chart-${key}`);
+      const chartWrap = chartSvg?.closest(".chart-wrap");
+      renderChart(chartSvg, rows);
+      if (chartWrap) {
+        chartDraws.set(chartWrap, () => renderChart(chartSvg, rows));
+        observeChartWrap(chartWrap);
+      }
       renderAnalysis($(`ana-${key}`), sku.daily ?? [], sku.reviews ?? []);
       bindReviewSearch(platformName);
       renderReviews($(`reviews-${key}`), sku.reviews ?? [], searchQueries[platformName] ?? "");
@@ -1378,6 +1421,8 @@
     window.addEventListener("blur", hideTip);
 
     renderAll();
+    // 首帧布局稳定后再按真实尺寸重绘一次图表
+    requestAnimationFrame(() => redrawCharts());
   </script>
 </body>
 </html>
