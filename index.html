@@ -359,6 +359,56 @@
       border-radius:inherit;
       background:linear-gradient(90deg, var(--bad), var(--warn));
     }
+    /* 评价分析（替代原关键词热区） */
+    .ana{
+      flex:1;
+      min-height:0;
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      overflow:auto;
+    }
+    .ana-kpis{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .ana-kpi{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.04);
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .ana-kpi .k{font-size:12px;color:var(--muted);letter-spacing:.04em}
+    .ana-kpi .v{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+    .ana-kpi .v.bad{color:var(--bad)}
+    .ana-kpi .v.good{color:var(--good)}
+    .ana-kpi .d{font-size:12px;color:rgba(255,255,255,.62)}
+    .ana-sub{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.04em;
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+    }
+    .ana-bars{display:flex;flex-direction:column;gap:9px}
+    .ana-bar-row{display:flex;flex-direction:column;gap:5px}
+    .ana-bar-top{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:rgba(255,255,255,.86)}
+    .ana-bar-top em{font-style:normal;color:rgba(255,255,255,.55)}
+    .ana-track{height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+    .ana-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--bad),var(--warn))}
+    .ana-note{
+      font-size:12.5px;
+      line-height:1.7;
+      color:rgba(255,255,255,.78);
+      border-left:2px solid rgba(255,107,122,.55);
+      padding-left:10px;
+    }
     .hotwords{
       position:relative;
       min-height:250px;
@@ -601,7 +651,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261105-01"></script>
+  <script src="./data-template.js?v=20261106-01"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -869,11 +919,11 @@
               <div class="card mini">
                 <div class="panel-header">
                   <div>
-                    <h3 class="panel-title" style="font-size:16px;">关键词热区</h3>
-                    <div class="panel-desc">从差评内容中抽取的高频词。</div>
+                    <h3 class="panel-title" style="font-size:16px;">评价分析</h3>
+                    <div class="panel-desc">近 7 天差评与好评率变化，按差评标签归类。</div>
                   </div>
                 </div>
-                <div class="hotwords" id="hotwords-${slug(platform.name)}"></div>
+                <div class="ana" id="ana-${slug(platform.name)}"></div>
               </div>
               <div class="card panel detail-table full-span">
                 <div class="panel-header">
@@ -984,165 +1034,123 @@
       `;
     }
 
-    function renderHotwords(container, hotwords) {
-      if (!hotwords.length) {
-        container.innerHTML = `<div class="muted">暂无关键词</div>`;
+    // 评价分析：近 7 天差评与好评率变化 + 差评标签分布 + 结论
+    function renderAnalysis(container, daily, reviews) {
+      if (!container) return;
+      const sorted = [...(Array.isArray(daily) ? daily : [])].sort(
+        (a, b) => (toDateValue(a.date) ?? 0) - (toDateValue(b.date) ?? 0)
+      );
+      const list = sorted.slice(-14);
+      const today = list.at(-1) ?? null;
+      const weekAgo = list.length >= 8 ? list[list.length - 8] : list[0] ?? null;
+      const prevWeekAgo = sorted.length >= 15 ? sorted[sorted.length - 15] : null;
+
+      const badNow = today ? currentBadCount(today) : null;
+      const badWeek = weekAgo ? currentBadCount(weekAgo) : null;
+      const badPrevWeek = prevWeekAgo ? currentBadCount(prevWeekAgo) : null;
+      const newBad = badNow != null && badWeek != null ? Math.round(badNow - badWeek) : null;
+      const prevNewBad = badWeek != null && badPrevWeek != null ? Math.round(badWeek - badPrevWeek) : null;
+      const badDelta = newBad != null && prevNewBad != null ? newBad - prevNewBad : null;
+
+      const rateNow = today ? currentGoodRate(today) : null;
+      const rateWeek = weekAgo ? currentGoodRate(weekAgo) : null;
+      const rateDelta = rateNow != null && rateWeek != null ? (rateNow - rateWeek) * 100 : null;
+
+      const signed = (v, unit = "", digits = 0) => {
+        const abs = Math.abs(v).toFixed(digits).replace(/\.?0+$/, "");
+        return `${v > 0 ? "+" : v < 0 ? "-" : ""}${abs === "" ? "0" : abs}${unit}`;
+      };
+      const pctText = (v) => (v == null ? "-" : `${(v * 100).toFixed(1).replace(/\.0$/, "")}%`);
+
+      // 差评标签分布（累计）
+      const tagCount = new Map();
+      let tagged = 0;
+      for (const review of Array.isArray(reviews) ? reviews : []) {
+        const raw = String(review.tag ?? "").trim();
+        if (!raw || raw === "-") continue;
+        let hit = false;
+        for (const part of raw.split(/[，,、]/)) {
+          const word = part.trim();
+          if (!word) continue;
+          tagCount.set(word, (tagCount.get(word) ?? 0) + 1);
+          hit = true;
+        }
+        if (hit) tagged += 1;
+      }
+      const topTags = [...tagCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
+
+      if (!today && !topTags.length) {
+        container.innerHTML = `<div class="muted">暂无评价数据</div>`;
         return;
       }
-      const words = hotwords
-        .map((word, index) => ({
-          text: typeof word === "string" ? word : word.word,
-          count: typeof word === "string" ? 1 : (word.count ?? 1),
-          index
-        }))
-        .filter((item) => item.text);
-      const max = Math.max(...words.map((item) => item.count), 1);
-      const min = Math.min(...words.map((item) => item.count), max);
-      const width = Math.max(container.clientWidth || 0, 260);
-      const height = Math.max(container.clientHeight || 0, 250);
-      const margin = 10;
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const sortedWords = words.sort((a, b) => b.count - a.count || b.text.length - a.text.length);
-      const placedRects = [];
-      const placed = sortedWords.map((item, rank) => {
-        const ratio = max === min ? 1 : (item.count - min) / (max - min);
-        const size = 16 + Math.round(Math.pow(ratio, 0.85) * 18);
-        const { width: wordW, height: wordH } = cloudMeasure(item.text, size);
-        const padW = wordW / 2 + 8;
-        const padH = wordH / 2 + 8;
-        let found = {
-          x: centerX,
-          y: centerY,
-          left: centerX - wordW / 2,
-          top: centerY - wordH / 2,
-          right: centerX + wordW / 2,
-          bottom: centerY + wordH / 2
-        };
 
-        if (rank > 0) {
-          const ringIndexFromRank = (rank - 1) % 3;
-          const ringOrder = Math.floor((rank - 1) / 3);
-          const slotCount = 6 + ringIndexFromRank * 2 + ringOrder * 2;
-          const radius = Math.min(
-            Math.max(40 + ringOrder * 26 + ringIndexFromRank * 10, Math.max(wordW, wordH) * 0.82 + 14),
-            Math.max(Math.min(width, height) / 2 - margin - Math.max(wordW, wordH) / 2, 78)
+      const kpiBad = newBad == null ? "-" : `${newBad}`;
+      const kpiBadDelta =
+        badDelta == null ? "无可比数据" : badDelta === 0 ? "较前 7 天持平" : `较前 7 天 ${signed(badDelta, " 条")}`;
+      const kpiRate = rateNow == null ? "未展示" : pctText(rateNow);
+      const kpiRateDelta =
+        rateDelta == null
+          ? "无可比数据"
+          : Math.abs(rateDelta) < 0.005
+            ? "较 7 天前持平"
+            : `较 7 天前 ${signed(rateDelta, "%", 2)}`;
+
+      const bars = topTags.length
+        ? topTags
+            .map(([word, count]) => {
+              const pct = tagged ? Math.round((count / tagged) * 100) : 0;
+              return `
+                <div class="ana-bar-row">
+                  <div class="ana-bar-top"><span>${word}</span><em>${count} 次 · ${pct}%</em></div>
+                  <div class="ana-track"><div class="ana-fill" style="width:${Math.max(pct, 3)}%"></div></div>
+                </div>`;
+            })
+            .join("")
+        : `<div class="muted" style="font-size:12.5px">暂无差评标签数据</div>`;
+
+      let conclusion;
+      if (!topTags.length && newBad == null) {
+        conclusion = "该 SKU 暂无差评明细，暂无可分析的差评结构。";
+      } else {
+        const parts = [];
+        if (newBad != null) {
+          parts.push(
+            `近 7 天新增差评 ${newBad} 条${badDelta == null ? "" : `（前 7 天 ${newBad - badDelta} 条）`}`
           );
-          const slotIndex = (rank - 1) % slotCount;
-          const baseAngle = -Math.PI / 2 + (slotIndex / slotCount) * Math.PI * 2;
-          const angleOffsets = [0, 0.22, -0.22, 0.44, -0.44, 0.66, -0.66];
-          const radiusOffsets = [0, 10, -10, 18, -18, 28, -28];
-
-          let placedRect = null;
-          for (const radiusOffset of radiusOffsets) {
-            for (const angleOffset of angleOffsets) {
-              const angle = baseAngle + angleOffset;
-              const ringRadius = radius + radiusOffset;
-              const x = centerX + Math.cos(angle) * ringRadius;
-              const y = centerY + Math.sin(angle) * ringRadius;
-              const rect = {
-                x,
-                y,
-                left: x - wordW / 2,
-                top: y - wordH / 2,
-                right: x + wordW / 2,
-                bottom: y + wordH / 2
-              };
-              if (!cloudFits(rect, width, height, margin)) continue;
-              if (placedRects.some((other) => cloudCollision(rect, other))) continue;
-              placedRect = rect;
-              break;
-            }
-            if (placedRect) break;
-          }
-
-          if (!placedRect) {
-            for (let t = 0; t < 900 && !placedRect; t += 1) {
-              const angle = baseAngle + t * 0.22;
-              const ringRadius = radius + Math.sin(t / 6) * 26 + t * 0.8;
-              const x = centerX + Math.cos(angle) * ringRadius;
-              const y = centerY + Math.sin(angle) * ringRadius;
-              const rect = {
-                x,
-                y,
-                left: x - wordW / 2,
-                top: y - wordH / 2,
-                right: x + wordW / 2,
-                bottom: y + wordH / 2
-              };
-              if (!cloudFits(rect, width, height, margin)) continue;
-              if (placedRects.some((other) => cloudCollision(rect, other))) continue;
-              placedRect = rect;
-            }
-          }
-
-          if (placedRect) found = placedRect;
         }
-
-        placedRects.push(found);
-        return {
-          ...item,
-          size,
-          found
-        };
-      });
-
-      const minLeft = Math.min(...placed.map((item) => item.found.left));
-      const maxRight = Math.max(...placed.map((item) => item.found.right));
-      const minTop = Math.min(...placed.map((item) => item.found.top));
-      const maxBottom = Math.max(...placed.map((item) => item.found.bottom));
-      const targetDx = centerX - (minLeft + maxRight) / 2;
-      const targetDy = centerY - (minTop + maxBottom) / 2;
-      const dx = Math.max(margin - minLeft, Math.min(targetDx, width - margin - maxRight));
-      const dy = Math.max(margin - minTop, Math.min(targetDy, height - margin - maxBottom));
-
-      const cloudNodes = placed.map((item, rank) => {
-          return `
-            <span
-              class="tag"
-              title="${item.text}：${item.count}"
-              data-count="${item.count}"
-              style="
-                left:${item.found.x + dx}px;
-                top:${item.found.y + dy}px;
-                font-size:${item.size}px;
-                color:${cloudPalette[rank % cloudPalette.length]};
-                opacity:${Math.max(0.7, 1 - rank * 0.035)};
-              "
-            >${item.text}</span>
-          `;
-        });
-
-      container.innerHTML = `${cloudNodes.join("")}<div class="word-tip" aria-hidden="true"></div>`;
-      const tip = container.querySelector(".word-tip");
-      const showTip = (target, clientX) => {
-        if (!target || !tip) return;
-        const rect = target.getBoundingClientRect();
-        const parentRect = container.getBoundingClientRect();
-        const centerX = rect.left - parentRect.left + rect.width / 2;
-        const aboveY = rect.top - parentRect.top;
-        tip.textContent = `出现频次：${target.dataset.count}`;
-        tip.style.left = `${centerX}px`;
-        tip.style.top = `${Math.max(0, aboveY)}px`;
-        tip.classList.add("show");
-      };
-      const hideTip = () => {
-        if (!tip) return;
-        tip.classList.remove("show");
-      };
-      container.onpointermove = (event) => {
-        const target = event.target.closest?.(".tag");
-        if (!target || !container.contains(target)) {
-          hideTip();
-          return;
+        if (rateNow != null) {
+          const rateWord =
+            rateDelta == null
+              ? ""
+              : Math.abs(rateDelta) < 0.005
+                ? "，较 7 天前持平"
+                : `，较 7 天前 ${signed(rateDelta, " 个百分点", 2)}`;
+          parts.push(`好评率 ${pctText(rateNow)}${rateWord}`);
         }
-        showTip(target, event.clientX);
-      };
-      container.onpointerleave = hideTip;
-      container.querySelectorAll(".tag").forEach((tag) => {
-        tag.onmouseenter = () => showTip(tag);
-        tag.onfocus = () => showTip(tag);
-      });
+        if (topTags.length) {
+          const pct = tagged ? Math.round((topTags[0][1] / tagged) * 100) : 0;
+          parts.push(`差评主要集中在「${topTags[0][0]}」（${pct}%）`);
+        }
+        conclusion = parts.join("；") + "。";
+      }
+
+      container.innerHTML = `
+        <div class="ana-kpis">
+          <div class="ana-kpi">
+            <span class="k">近 7 天新增差评</span>
+            <b class="v bad">${kpiBad}</b>
+            <span class="d">${kpiBadDelta}</span>
+          </div>
+          <div class="ana-kpi">
+            <span class="k">好评率</span>
+            <b class="v ${rateDelta != null && rateDelta < 0 ? "bad" : "good"}">${kpiRate}</b>
+            <span class="d">${kpiRateDelta}</span>
+          </div>
+        </div>
+        <div class="ana-sub"><span>差评标签分布</span><span>累计 ${tagged} 条有标签差评</span></div>
+        <div class="ana-bars">${bars}</div>
+        <div class="ana-note">${conclusion}</div>
+      `;
     }
 
     const searchQueries = Object.fromEntries(data.platforms.map((platform) => [platform.name, ""]));
@@ -1278,7 +1286,7 @@
       renderSkuChips($(`chips-${key}`), platformName, platform);
       renderMetrics($(`metrics-${key}`), rows);
       renderChart($(`chart-${key}`), rows);
-      renderHotwords($(`hotwords-${key}`), sku.hotwords ?? []);
+      renderAnalysis($(`ana-${key}`), sku.daily ?? [], sku.reviews ?? []);
       bindReviewSearch(platformName);
       renderReviews($(`reviews-${key}`), sku.reviews ?? [], searchQueries[platformName] ?? "");
     }
