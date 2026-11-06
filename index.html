@@ -649,7 +649,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261106-03"></script>
+  <script src="./data-template.js?v=20261106-04"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -918,7 +918,7 @@
                 <div class="panel-header">
                   <div>
                     <h3 class="panel-title" style="font-size:16px;">评价分析</h3>
-                    <div class="panel-desc">本周新增差评与差评标签分布。</div>
+                    <div class="panel-desc">本周新增差评与关键词分类。</div>
                   </div>
                 </div>
                 <div class="ana" id="ana-${slug(platform.name)}"></div>
@@ -1059,22 +1059,26 @@
 
       const md = (iso) => (iso ? `${Number(iso.slice(5, 7))}-${iso.slice(8, 10)}` : "-");
 
-      // 差评标签分布
-      const tagCount = new Map();
-      let tagged = 0;
+      // 关键词分类：对差评正文 + 平台标签做关键词归类，每条差评只归入优先级最高的一个分类
+      const KEYWORD_CATEGORIES = [
+        ["口感/口味", ["难吃", "不好吃", "口感", "味道", "口味", "太酸", "太甜", "太干", "干巴", "难喝", "腥", "涩", "腻", "酸味", "甜味", "嚼"]],
+        ["包装/破损", ["破损", "撒漏", "漏了", "漏液", "漏出来", "变形", "盖子", "封口", "胀包", "胀袋", "包装", "压坏"]],
+        ["日期/临期", ["临期", "过期", "日期", "保质期", "不新鲜"]],
+        ["异物/变质", ["异物", "变质", "发酸", "馊", "异味", "怪味", "长毛", "虫子"]],
+        ["配送/冷链", ["冰袋", "不冰", "化了", "配送", "送达", "冷链", "保温"]],
+        ["与描述不符", ["描述不符", "不符", "货不对板"]]
+      ];
+      const reviewTotal = Array.isArray(reviews) ? reviews.length : 0;
+      const catCount = new Map();
       for (const review of Array.isArray(reviews) ? reviews : []) {
-        const raw = String(review.tag ?? "").trim();
-        if (!raw || raw === "-") continue;
-        let hit = false;
-        for (const part of raw.split(/[，,、]/)) {
-          const word = part.trim();
-          if (!word) continue;
-          tagCount.set(word, (tagCount.get(word) ?? 0) + 1);
-          hit = true;
-        }
-        if (hit) tagged += 1;
+        const text = `${review.content ?? ""} ${review.tag ?? ""}`.trim();
+        if (!text || text === "-") continue;
+        const hit = KEYWORD_CATEGORIES.find(([, words]) => words.some((w) => text.includes(w)));
+        const name = hit ? hit[0] : "其他";
+        catCount.set(name, (catCount.get(name) ?? 0) + 1);
       }
-      const topTags = [...tagCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
+      const topTags = [...catCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
+      const classified = reviewTotal;
 
       if (!today && !topTags.length) {
         container.innerHTML = `<div class="muted">暂无评价数据</div>`;
@@ -1089,7 +1093,7 @@
       const bars = topTags.length
         ? topTags
             .map(([word, count]) => {
-              const pct = tagged ? Math.round((count / tagged) * 100) : 0;
+              const pct = classified ? Math.round((count / classified) * 100) : 0;
               return `
                 <div class="ana-bar-row">
                   <div class="ana-bar-top"><span>${word}</span><em>${count} 次 · ${pct}%</em></div>
@@ -1097,7 +1101,7 @@
                 </div>`;
             })
             .join("")
-        : `<div class="muted" style="font-size:12.5px">暂无差评标签数据</div>`;
+        : `<div class="muted" style="font-size:12.5px">暂无差评内容可分类</div>`;
 
       let conclusion;
       if (!topTags.length && newBad == null) {
@@ -1108,7 +1112,7 @@
           parts.push(`本周新增差评 ${newBad} 条（自 ${md(baseline.date)} 起）`);
         }
         if (topTags.length) {
-          const pct = tagged ? Math.round((topTags[0][1] / tagged) * 100) : 0;
+          const pct = classified ? Math.round((topTags[0][1] / classified) * 100) : 0;
           parts.push(`差评主要集中在「${topTags[0][0]}」（${pct}%）`);
         }
         conclusion = parts.join("；") + "。";
@@ -1122,7 +1126,7 @@
             <span class="d">${kpiBadHint}</span>
           </div>
         </div>
-        <div class="ana-sub"><span>差评标签分布</span></div>
+        <div class="ana-sub"><span>关键词分类</span></div>
         <div class="ana-bars">${bars}</div>
         <div class="ana-note">${conclusion}</div>
       `;
