@@ -204,7 +204,7 @@
     }
     .layout{
       grid-template-columns: minmax(0, 1.6fr) minmax(320px, .9fr);
-      align-items:stretch;
+      align-items:start;
     }
     .stack{
       display:flex;
@@ -213,6 +213,10 @@
     }
     .stack > .card{
       flex:1;
+    }
+    /* 图表卡片按内容高度收缩，让 X 轴贴住卡片底部，而不是被拉高留白 */
+    .layout > .stack > .card{
+      flex:0 0 auto;
     }
     .row{
       display:grid;
@@ -683,7 +687,7 @@
     </div>
   </div>
 
-  <script src="./data-template.js?v=20261106-06"></script>
+  <script src="./data-template.js?v=20261106-07"></script>
   <script>
     const fmt = new Intl.NumberFormat("zh-CN");
     const clone = (value) => JSON.parse(JSON.stringify(value));
