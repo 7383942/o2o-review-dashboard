@@ -13127,6 +13127,24 @@
               "count": 1
             }
           ]
+        },
+        {
+          "skuName": "0蔗糖希腊挤挤袋250g",
+          "updatedAt": "2026-11-23",
+          "daily": [
+            {
+              "date": "2026-11-23",
+              "reviews": null,
+              "reviewsText": "-",
+              "bad": null,
+              "badText": "-",
+              "goodRate": 1,
+              "goodRateText": "100%"
+            }
+          ],
+          "reviews": [],
+          "topics": [],
+          "hotwords": []
         }
       ]
     },
